@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github } from 'lucide-react'
+import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github, Target } from 'lucide-react'
 
 const About = () => {
   return (
@@ -8,15 +8,15 @@ const About = () => {
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
-          <span className="glass-tag text-indigo-500">System // Identity</span>
+          <span className="glass-tag text-violet-500">System // Identity</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
-            Architectural <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Profile</span>
+            Architectural <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-purple-500 to-indigo-600 font-black">Profile</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
             Deployment Log: SY BCA Student // Logic Builder. <br /> Focused on bridging human requirements with high-performance digital logic.
           </p>
           <div className="flex items-center gap-4 pt-4">
-            <a href="https://www.linkedin.com/in/yash-pokiyaone8/" target="_blank" rel="noreferrer" className="glass-tag text-indigo-500 flex items-center gap-2 hover:bg-indigo-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-widest">
+            <a href="https://www.linkedin.com/in/yash-pokiyaone8/" target="_blank" rel="noreferrer" className="glass-tag text-violet-500 flex items-center gap-2 hover:bg-violet-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-widest">
               <Linkedin size={12} /> LinkedIn Profile
             </a>
             <a href="https://github.com/yash-pokiya" target="_blank" rel="noreferrer" className="glass-tag text-zinc-500 flex items-center gap-2 hover:bg-zinc-800 hover:text-white transition-all text-[9px] font-black uppercase tracking-widest">
@@ -25,7 +25,7 @@ const About = () => {
           </div>
         </div>
         <div className="hidden md:flex flex-col items-end gap-4">
-          <div className="w-24 h-24 rounded-3xl bg-indigo-500 flex items-center justify-center text-white shadow-2xl shadow-indigo-500/20">
+          <div className="w-24 h-24 rounded-3xl bg-violet-600 flex items-center justify-center text-white shadow-2xl shadow-violet-500/20">
             <Linkedin size={40} />
           </div>
         </div>
@@ -138,7 +138,12 @@ const About = () => {
               <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Sutex Bank College of Computer Applications</p>
             </div>
           </div>
-          <button className="btn-neo px-12 py-4 text-[10px] font-black uppercase tracking-[0.4em]">View Academic Path</button>
+          <button 
+            onClick={() => document.getElementById('education').scrollIntoView({ behavior: 'smooth' })}
+            className="btn-neo px-12 py-4 text-[10px] font-black uppercase tracking-[0.4em]"
+          >
+            View Academic Path
+          </button>
         </div>
       </div>
     </div>

@@ -73,7 +73,7 @@ const Home = () => {
               </div>
               
               <div className="flex flex-wrap items-center gap-10 pt-4">
-                <Link to="/projects" className="btn-neo px-8 py-3">Initialize Exploration</Link>
+                <a href="#projects" className="btn-neo px-8 py-3">Initialize Exploration</a>
                 <div className="flex items-center gap-8">
                   <div className="flex flex-col border-l border-black/10 dark:border-white/10 pl-6 text-[var(--text-main)]">
                     <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Internship</span>

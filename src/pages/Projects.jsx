@@ -46,7 +46,7 @@ const projects = [
     github: "https://github.com/yash-pokiya",
     tech: ["MongoDB", "Express", "React", "Node.js"],
     icon: <ShoppingBag size={24} />,
-    color: "from-emerald-500 to-teal-600",
+    color: "from-violet-500 to-indigo-600",
     size: "md",
     caseStudy: {
       challenge: "Building a secure admin dashboard to manage inventory and user permissions.",

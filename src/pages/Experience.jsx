@@ -76,7 +76,7 @@ const Experience = () => {
           <div className="bento-grid-bg" />
           <div className="flex flex-col lg:flex-row min-h-[400px]">
             {/* STATUS SIDE */}
-            <div className="lg:w-1/3 p-12 bg-indigo-500 text-white flex flex-col justify-between relative overflow-hidden">
+            <div className="lg:w-1/3 p-12 bg-violet-600 text-white flex flex-col justify-between relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent" />
               <div className="relative z-10 space-y-8">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">

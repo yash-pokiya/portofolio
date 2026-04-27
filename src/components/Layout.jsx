@@ -1,34 +1,64 @@
 import React, { useState, useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Sun, Moon, Github, Linkedin, Search, Menu, X, Cpu } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Layout = ({ children, isDark, setIsDark }) => {
   const [scrolled, setScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const location = useLocation()
-
+  const [activeSection, setActiveSection] = useState('home')
+  
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40)
+      
+      // Smart section detection
+      const sections = ['home', 'about', 'projects', 'skills', 'experience', 'education', 'blog', 'contact']
+      const current = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 150 && rect.bottom >= 150
+        }
+        return false
+      })
+      if (current) setActiveSection(current)
     }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Skills', path: '/skills' },
-    { name: 'Experience', path: '/experience' },
-    { name: 'Education', path: '/education' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Home', path: 'home' },
+    { name: 'About', path: 'about' },
+    { name: 'Projects', path: 'projects' },
+    { name: 'Skills', path: 'skills' },
+    { name: 'Experience', path: 'experience' },
+    { name: 'Education', path: 'education' },
+    { name: 'Blog', path: 'blog' },
+    { name: 'Contact', path: 'contact' },
   ]
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id)
+    if (element) {
+      const offset = 80 // Adjust based on header height
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = element.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+    setIsMenuOpen(false)
+  }
+
   return (
-    <div className="min-h-screen relative font-primary">
+    <div className="min-h-screen relative font-primary scroll-smooth">
       {/* NOISE & GRID */}
       <div className="fixed inset-0 pointer-events-none opacity-[var(--noise-opacity)] mix-blend-overlay z-[10]" />
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_2px_2px,_var(--accent)_1px,_transparent_0)] bg-[size:40px_40px] opacity-[var(--grid-opacity)] z-0" />
@@ -46,37 +76,35 @@ const Layout = ({ children, isDark, setIsDark }) => {
       >
         <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
           {/* LOGO */}
-          <Link to="/" className="group flex items-center gap-3">
+          <button onClick={() => scrollToSection('home')} className="group flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[var(--accent)] flex items-center justify-center text-white shadow-xl shadow-purple-500/20 group-hover:rotate-12 transition-transform duration-500">
               <Cpu size={20} />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-start">
               <span className="text-sm font-black uppercase tracking-[0.3em] text-[var(--text-main)]">Yash <span className="text-[var(--accent)]">Pokiya</span></span>
-              <span className="text-[8px] font-black uppercase tracking-[0.4em] opacity-40">Web Developer</span>
+              <span className="text-[8px] font-black uppercase tracking-[0.4em] opacity-40">System Architect</span>
             </div>
-          </Link>
+          </button>
 
           {/* DESKTOP NAV */}
           <nav className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
-              <NavLink
+              <button
                 key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `relative text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:text-[var(--accent)] ${
-                    isActive ? 'text-[var(--accent)]' : 'text-[var(--text-main)]'
-                  }`
-                }
+                onClick={() => scrollToSection(item.path)}
+                className={`relative text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:text-[var(--accent)] ${
+                  activeSection === item.path ? 'text-[var(--accent)]' : 'text-[var(--text-main)]'
+                }`}
               >
                 {item.name}
-                {location.pathname === item.path && (
+                {activeSection === item.path && (
                   <motion.div
                     layoutId="active-nav"
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--accent)]"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-              </NavLink>
+              </button>
             ))}
           </nav>
 
@@ -109,7 +137,7 @@ const Layout = ({ children, isDark, setIsDark }) => {
       </header>
 
       {/* MAIN CONTENT */}
-      <main className={`transition-all duration-500 pt-32 pb-24 relative z-10`}>
+      <main className="transition-all duration-500 relative z-10 pt-24">
         {children}
       </main>
 
@@ -129,7 +157,7 @@ const Layout = ({ children, isDark, setIsDark }) => {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              className="fixed right-0 top-0 h-full w-[85%] max-w-sm bg-white dark:bg-zinc-900 z-[1001] p-8 shadow-2xl"
+              className="fixed right-0 top-0 h-full w-[85%] max-w-sm bg-white dark:bg-zinc-900 z-[1001] p-8 shadow-2xl flex flex-col"
             >
               <div className="flex justify-between items-center mb-12">
                 <div className="flex items-center gap-2">
@@ -145,20 +173,17 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
               <nav className="space-y-4">
                 {navItems.map((item) => (
-                  <NavLink
+                  <button
                     key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={({ isActive }) =>
-                      `block p-4 rounded-xl transition-all font-black uppercase tracking-widest text-[11px] ${
-                        isActive 
-                        ? 'bg-[var(--accent)] text-white shadow-xl shadow-purple-500/20' 
-                        : 'bg-black/5 dark:bg-white/5 text-[var(--text-main)] hover:bg-black/10 dark:hover:bg-white/10'
-                      }`
-                    }
+                    onClick={() => scrollToSection(item.path)}
+                    className={`w-full text-left p-4 rounded-xl transition-all font-black uppercase tracking-widest text-[11px] ${
+                      activeSection === item.path 
+                      ? 'bg-[var(--accent)] text-white shadow-xl shadow-purple-500/20' 
+                      : 'bg-black/5 dark:bg-white/5 text-[var(--text-main)] hover:bg-black/10 dark:hover:bg-white/10'
+                    }`}
                   >
                     {item.name}
-                  </NavLink>
+                  </button>
                 ))}
               </nav>
 

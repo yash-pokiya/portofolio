@@ -73,7 +73,7 @@ const Education = () => {
                       { icon: <Globe size={16} />, title: "Web Technologies", desc: "System Design" },
                       { icon: <Award size={16} />, title: "Business Applications", desc: "Enterprise Logic" }
                     ].map((item, i) => (
-                      <div key={i} className="p-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex items-center gap-4 group-hover:border-indigo-500/30 transition-all">
+                      <div key={i} className="p-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex items-center gap-4 group-hover:border-[var(--accent)]/30 transition-all">
                         <div className="text-[var(--accent)]">{item.icon}</div>
                         <div>
                           <p className="text-[11px] font-black uppercase tracking-widest text-[var(--text-main)] leading-tight">{item.title}</p>
