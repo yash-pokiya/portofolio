@@ -8,9 +8,9 @@ const Education = () => {
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
-          <span className="glass-tag text-indigo-500">System // Foundation</span>
+          <span className="glass-tag text-[var(--accent)]">System // Foundation</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
-            Academic <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Architecture</span>
+            Academic <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-purple-500 to-indigo-600 font-black">Architecture</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
             Deployment Log: SY BCA Student // Logic Builder. <br /> Focused on bridging human requirements with high-performance digital logic.
@@ -29,7 +29,7 @@ const Education = () => {
           <div className="bento-grid-bg" />
           <div className="flex flex-col lg:flex-row min-h-[450px]">
             {/* INSTITUTION SIDE */}
-            <div className="lg:w-1/3 p-12 bg-indigo-500 text-white flex flex-col justify-between relative overflow-hidden">
+            <div className="lg:w-1/3 p-12 bg-[var(--accent)] text-white flex flex-col justify-between relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent" />
               <div className="relative z-10 space-y-8">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
@@ -51,7 +51,7 @@ const Education = () => {
               <div className="space-y-12">
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
-                    <span className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.4em]">Primary Degree</span>
+                    <span className="text-[var(--accent)] text-[10px] font-black uppercase tracking-[0.4em]">Primary Degree</span>
                     <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-[var(--text-main)]">BCA - SY</h2>
                     <p className="text-zinc-500 font-bold uppercase tracking-widest text-xs">Bachelor of Computer Applications</p>
                   </div>
@@ -60,12 +60,12 @@ const Education = () => {
                       <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                       <span className="text-[9px] font-black uppercase tracking-widest">Active System</span>
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Surat, India</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-500">Surat, India</span>
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-500">Core Curriculum Logs</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--accent)]">Core Curriculum Logs</span>
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
                       { icon: <Database size={16} />, title: "Database Architectures", desc: "SQL & NoSQL Systems" },
@@ -74,7 +74,7 @@ const Education = () => {
                       { icon: <Award size={16} />, title: "Business Applications", desc: "Enterprise Logic" }
                     ].map((item, i) => (
                       <div key={i} className="p-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex items-center gap-4 group-hover:border-indigo-500/30 transition-all">
-                        <div className="text-indigo-500">{item.icon}</div>
+                        <div className="text-[var(--accent)]">{item.icon}</div>
                         <div>
                           <p className="text-[11px] font-black uppercase tracking-widest text-[var(--text-main)] leading-tight">{item.title}</p>
                           <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 mt-1">{item.desc}</p>
@@ -86,7 +86,7 @@ const Education = () => {
               </div>
 
               <div className="pt-12 flex items-center gap-4 border-t border-black/5 dark:border-white/5">
-                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400">Institutional Unit:</span>
+                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-500">Institutional Unit:</span>
                 <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-main)]">Sutex Bank College of Computer Applications</span>
               </div>
             </div>
@@ -102,7 +102,7 @@ const Education = () => {
           { label: "Logic Specialization", val: "MERN / Next.js" }
         ].map((meta, i) => (
           <div key={i} className="bento-card p-8 flex flex-col justify-center items-center text-center space-y-4">
-            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-indigo-500">{meta.label}</span>
+            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[var(--accent)]">{meta.label}</span>
             <p className="text-xl font-black uppercase tracking-tighter text-[var(--text-main)]">{meta.val}</p>
           </div>
         ))}

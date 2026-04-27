@@ -43,17 +43,17 @@ const About = () => {
           <div className="relative z-10 space-y-12">
             <div className="flex justify-between items-start">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-500">
+                <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-[var(--accent)]">
                   <User size={24} />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black uppercase tracking-tight text-[var(--text-main)]">Professional Dossier</h3>
-                  <div className="flex items-center gap-2 text-indigo-500 text-[10px] font-black uppercase tracking-[0.3em]">
+                  <div className="flex items-center gap-2 text-[var(--accent)] text-[10px] font-black uppercase tracking-[0.3em]">
                     <MapPin size={12} /> Based in Surat, India
                   </div>
                 </div>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-40 text-black dark:text-white">Unit // 01</span>
+              <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-60 text-black dark:text-white">Unit // 01</span>
             </div>
 
             <p className="text-zinc-700 dark:text-zinc-300 text-xl font-bold leading-relaxed max-w-3xl">
@@ -67,6 +67,9 @@ const About = () => {
                 </span>
               ))}
             </div>
+            <div className="absolute top-12 right-12 w-16 h-16 rounded-2xl bg-[var(--accent)] flex items-center justify-center text-white rotate-12 group-hover:rotate-0 transition-transform duration-700 shadow-2xl shadow-violet-500/20">
+              <Target size={32} />
+            </div>
           </div>
         </motion.div>
 
@@ -76,7 +79,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="lg:col-span-4 bento-card p-12 bg-indigo-500 text-white relative overflow-hidden shadow-2xl shadow-indigo-500/20"
+          className="lg:col-span-4 bento-card p-10 bg-linear-to-br from-violet-600 to-indigo-600 text-white relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent" />
           <div className="bento-grid-bg opacity-20" />

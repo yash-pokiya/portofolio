@@ -10,9 +10,9 @@ const Experience = () => {
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
-          <span className="glass-tag text-indigo-500">System // Experience</span>
+          <span className="glass-tag text-[var(--accent)]">System // Experience</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
-            Professional <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">History</span>
+            Professional <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-purple-500 to-indigo-600 font-black">History</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
             Deployment logs: 01 Industry Internship Completed. <br /> Focused on full-stack MERN architectures and real-world system logic.
@@ -32,12 +32,12 @@ const Experience = () => {
           <div className="relative z-10 flex flex-col md:flex-row justify-between gap-12">
             <div className="space-y-6 md:w-2/3">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-indigo-500 flex items-center justify-center text-white">
+                <div className="w-12 h-12 rounded-xl bg-[var(--accent)] flex items-center justify-center text-white">
                   <Briefcase size={24} />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black uppercase tracking-tight text-[var(--text-main)]">MERN Stack Intern</h3>
-                  <p className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.3em]">LaMinds // Surat, IN</p>
+                  <p className="text-[var(--accent)] text-[10px] font-black uppercase tracking-[0.3em]">LaMinds // Surat, IN</p>
                 </div>
               </div>
               <p className="text-zinc-600 dark:text-zinc-300 text-sm font-bold leading-relaxed max-w-xl">
@@ -53,11 +53,11 @@ const Experience = () => {
             </div>
             <div className="md:w-1/3 flex flex-col justify-between items-end border-l border-black/5 dark:border-white/5 pl-12">
               <div className="text-right text-[var(--text-main)]">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Deployment Period</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Deployment Period</span>
                 <p className="text-lg font-black uppercase italic mt-1">3 Months</p>
               </div>
               <div className="text-right text-[var(--text-main)]">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Location Strategy</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Location Strategy</span>
                 <p className="text-sm font-black uppercase mt-1">Sumul Dairy Rd, Surat</p>
               </div>
             </div>
@@ -98,7 +98,7 @@ const Experience = () => {
               <div className="space-y-8">
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
-                    <span className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.4em]">Role Objective</span>
+                    <p className="text-[var(--accent)] text-[10px] font-black uppercase tracking-[0.4em] mb-2">Key Competency</p>
                     <h2 className="text-4xl font-black uppercase tracking-tighter text-[var(--text-main)]">Practical Intern</h2>
                   </div>
                   <div className="flex flex-col items-end">
@@ -117,8 +117,8 @@ const Experience = () => {
                     { label: "Goal // 02", text: "Deploy Industry-Grade APIs" },
                     { label: "Goal // 03", text: "Optimize Frontend UX Logic" }
                   ].map((goal, i) => (
-                    <div key={i} className="p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 space-y-3 group-hover:border-indigo-500/30 transition-all">
-                      <span className="text-[9px] font-black uppercase tracking-[0.3em] text-indigo-500">{goal.label}</span>
+                    <div key={i} className="p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 space-y-3 group-hover:border-[var(--accent)]/30 transition-all">
+                      <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[var(--accent)]">{goal.label}</span>
                       <p className="text-[11px] font-black uppercase tracking-widest leading-tight text-black dark:text-white">{goal.text}</p>
                     </div>
                   ))}
@@ -134,9 +134,9 @@ const Experience = () => {
         <div className="bento-grid-bg opacity-30" />
         <div className="relative z-10 space-y-10">
           <div className="flex flex-col items-center gap-4">
-            <div className="w-12 h-px bg-indigo-500" />
-            <h2 className="text-3xl font-black uppercase tracking-tighter">Request Full <span className="text-indigo-500">Manifesto</span></h2>
-            <div className="w-12 h-px bg-indigo-500" />
+            <div className="w-12 h-px bg-[var(--accent)]" />
+            <h2 className="text-3xl font-black uppercase tracking-tighter">Request Full <span className="text-[var(--accent)]">Manifesto</span></h2>
+            <div className="w-12 h-px bg-[var(--accent)]" />
           </div>
           
           <p className="text-zinc-500 font-bold uppercase tracking-widest text-[10px] max-w-md mx-auto">
@@ -150,14 +150,14 @@ const Experience = () => {
               rel="noreferrer"
               className="group relative px-12 py-5 bg-black dark:bg-white text-white dark:text-black rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl"
             >
-              <div className="absolute inset-0 bg-indigo-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               <span className="relative flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.4em] group-hover:text-white transition-colors">
                 <Download size={16} /> Download CV
               </span>
             </a>
             
             <div className="flex items-center gap-3 px-6 py-4 rounded-full border border-black/5 dark:border-white/10">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
               <span className="text-[9px] font-black uppercase tracking-widest opacity-60">System Ready for Download</span>
             </div>
           </div>

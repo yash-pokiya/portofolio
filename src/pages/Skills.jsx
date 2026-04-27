@@ -45,7 +45,7 @@ const Skills = () => {
         <div className="space-y-6 max-w-2xl">
           <span className="glass-tag text-indigo-500">System // Arsenal</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
-            Technical <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Modules</span>
+            Technical <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-purple-500 to-indigo-600 font-black">Modules</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
             Deployment Log: SY BCA Tech Stack. Focused on modular architectures, <br /> performance optimization, and logic consistency.
@@ -68,7 +68,7 @@ const Skills = () => {
             
             <div className="relative z-10 space-y-12">
               <div className="flex justify-between items-start">
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500">
+                <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all duration-500">
                   {category.icon}
                 </div>
                 <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-40">Module // 0{idx + 1}</span>
@@ -80,20 +80,20 @@ const Skills = () => {
                 </h3>
                 
                 <div className="space-y-8">
-                  {category.skills.map((skill) => (
-                    <div key={skill.name} className="space-y-3">
+                  {category.skills.map((skill, si) => (
+                    <div key={skill.name} className="space-y-3 group/skill">
                       <div className="flex justify-between items-end">
-                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--text-main)]">
-                          {skill.name}
-                        </span>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-main)] group-hover/skill:text-[var(--accent)] transition-colors">{skill.name}</span>
                         <span className="text-[10px] font-black opacity-40 text-[var(--text-main)]">{skill.level}%</span>
                       </div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--accent)] mb-2">Capability Level</p>
                       <div className="h-1 w-full bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1.5, delay: 0.2 }}
-                          className="h-full bg-indigo-500 group-hover:bg-indigo-400 transition-colors"
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.5, delay: si * 0.1 }}
+                          className="h-full bg-linear-to-r from-violet-600 to-indigo-600 rounded-full"
                         />
                       </div>
                     </div>
@@ -115,10 +115,11 @@ const Skills = () => {
               </div>
             ))}
           </div>
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Continuous Integration // 2026 Strategy Active</p>
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--accent)] mb-2 italic">Logic Specialization</span>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">/ 2026 Strategy Active</p>
         </div>
         <div className="flex gap-4">
-          <span className="px-4 py-2 bg-indigo-500 text-white text-[10px] font-black uppercase tracking-widest rounded-lg">Logic Built</span>
+          <span className="px-4 py-2 bg-[var(--accent)] text-white text-[10px] font-black uppercase tracking-widest rounded-lg">Logic Built</span>
           <span className="px-4 py-2 border border-black/5 dark:border-white/10 text-[10px] font-black uppercase tracking-widest rounded-lg">Performance Optimized</span>
         </div>
       </div>

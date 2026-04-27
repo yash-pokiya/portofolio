@@ -36,9 +36,9 @@ const Blog = () => {
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
-          <span className="glass-tag text-indigo-500">System // Intel</span>
+          <span className="glass-tag text-[var(--accent)]">System // Intel</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
-            Insights & <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Intel</span>
+            Technical <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-purple-500 to-indigo-600 font-black">Insights</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
             Deployment Log: 03 Technical Entries Found. <br /> Analyzing system logic, performance metrics, and architecture patterns.
@@ -56,7 +56,7 @@ const Blog = () => {
         >
           <div className="bento-grid-bg" />
           <div className="flex flex-col lg:flex-row">
-            <div className="lg:w-1/2 p-12 bg-indigo-500 text-white flex flex-col justify-between relative overflow-hidden">
+            <div className="lg:w-1/2 p-12 bg-[var(--accent)] text-white flex flex-col justify-between relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent" />
               <div className="relative z-10 flex flex-col gap-12">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform duration-500">
@@ -82,7 +82,7 @@ const Blog = () => {
             </div>
             <div className="lg:w-1/2 p-12 flex flex-col justify-center bg-white/40 dark:bg-black/40 backdrop-blur-sm">
               <div className="space-y-8">
-                <span className="px-4 py-1 bg-indigo-500/10 text-indigo-500 text-[9px] font-black uppercase tracking-[0.4em] rounded-full border border-indigo-500/20">
+                <span className="px-4 py-1 bg-[var(--accent)]/10 text-[var(--accent)] text-[9px] font-black uppercase tracking-[0.4em] rounded-full border border-[var(--accent)]/20">
                   Protocol // {featuredPost.tag}
                 </span>
                 <p className="text-zinc-700 dark:text-zinc-300 text-xl font-bold leading-relaxed">
@@ -106,18 +106,18 @@ const Blog = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            className="bento-card p-8 group cursor-pointer hover:border-indigo-500/30 transition-all overflow-hidden"
+            className="bento-card p-8 group cursor-pointer hover:border-[var(--accent)]/30 transition-all overflow-hidden"
           >
             <div className="bento-grid-bg" />
             <div className="relative z-10 flex flex-col h-full justify-between gap-12">
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-indigo-500">{post.tag}</span>
+                  <span className="text-xs font-black text-[var(--accent)]">{post.date}</span>
                   <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest opacity-40 text-[var(--text-main)]">
                     <Clock size={12} /> {post.readTime}
                   </div>
                 </div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter leading-tight group-hover:text-indigo-500 transition-colors text-[var(--text-main)]">
+                <h3 className="text-2xl font-black uppercase tracking-tighter leading-tight group-hover:text-[var(--accent)] transition-colors text-[var(--text-main)]">
                   {post.title}
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm font-bold leading-relaxed">
