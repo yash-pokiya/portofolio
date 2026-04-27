@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-primary: 'Outfit', sans-serif;
+  --dark-mode: class;
+  
+  --color-brand-black: #050505;
+  --color-brand-gray: #111111;
+  --color-brand-indigo: #6366f1;
+  --color-brand-purple: #a855f7;
+  
+  --radius-bento: 40px;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg-main: #f8f9fa;
+    --text-main: #0a0a0a;
+    --text-secondary: #4a4a4a;
+    --accent: #4f46e5;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --noise-opacity: 0.02;
+    --grid-opacity: 0.05;
+  }
+
+  .dark {
+    --bg-main: #050505;
+    --text-main: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent: #818cf8;
+    --card-bg: rgba(15, 15, 15, 0.8);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --noise-opacity: 0.4;
+    --grid-opacity: 0.1;
+  }
+
+  body {
+    @apply font-primary bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-500 overflow-x-hidden selection:bg-indigo-500 selection:text-white;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-size: 180px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .bento-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    @apply rounded-[2.5rem] backdrop-blur-xl transition-all duration-700 relative;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  }
+
+  /* Premium Inner Grid Effect */
+  .bento-grid-bg {
+    @apply absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none;
+    background-image: radial-gradient(var(--text-main) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bento-card:hover {
+    @apply border-indigo-500/50 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)];
+    transform: translateY(-4px);
+  }
+
+  .heading-hero {
+    color: var(--text-main);
+    @apply text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] uppercase;
+  }
+
+  .btn-neo {
+    @apply relative px-10 py-4 bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-[0.2em] text-[10px] rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl;
+  }
+
+  .btn-neo::after {
+    content: '';
+    @apply absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:animate-[shimmer_2s_infinite];
+  }
+
+  .glass-tag {
+    @apply px-4 py-1.5 rounded-full border border-black/5 dark:border-white/10 bg-white/10 dark:bg-black/20 backdrop-blur-md text-[9px] font-black uppercase tracking-[0.2em] text-indigo-500;
+  }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { @apply bg-zinc-200 dark:bg-zinc-800 rounded-full border-2 border-transparent bg-clip-padding; }
