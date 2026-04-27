@@ -37,11 +37,11 @@ const Blog = () => {
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
           <span className="glass-tag text-indigo-500">System // Intel</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-            Insights & <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Thoughts</span>
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
+            Insights & <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Intel</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
-            Deployment Log: Documenting the journey of system logic and <br /> architectural evolution in real-time.
+            Deployment Log: 03 Technical Entries Found. <br /> Analyzing system logic, performance metrics, and architecture patterns.
           </p>
         </div>
       </section>
@@ -113,11 +113,11 @@ const Blog = () => {
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
                   <span className="text-[9px] font-black uppercase tracking-[0.4em] text-indigo-500">{post.tag}</span>
-                  <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest opacity-40 text-black dark:text-white">
+                  <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest opacity-40 text-[var(--text-main)]">
                     <Clock size={12} /> {post.readTime}
                   </div>
                 </div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter leading-tight group-hover:text-indigo-500 transition-colors text-black dark:text-white">
+                <h3 className="text-2xl font-black uppercase tracking-tighter leading-tight group-hover:text-indigo-500 transition-colors text-[var(--text-main)]">
                   {post.title}
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm font-bold leading-relaxed">
@@ -125,7 +125,7 @@ const Blog = () => {
                 </p>
               </div>
               <div className="flex justify-between items-center pt-8 border-t border-black/5 dark:border-white/5">
-                <span className="text-[9px] font-black uppercase tracking-widest opacity-40 text-black dark:text-white">{post.date}</span>
+                <span className="text-[9px] font-black uppercase tracking-widest opacity-40 text-[var(--text-main)]">{post.date}</span>
                 <ArrowUpRight size={20} className="opacity-20 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
               </div>
             </div>

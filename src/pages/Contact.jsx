@@ -9,7 +9,7 @@ const Contact = () => {
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
           <span className="glass-tag text-indigo-500">System // Communication</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
             Get In <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Touch</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
@@ -58,7 +58,7 @@ const Contact = () => {
 
               <div className="flex gap-4 pt-8 border-t border-white/10">
                 {[
-                  { icon: <Linkedin size={20} />, link: "#" },
+                  { icon: <Linkedin size={20} />, link: "https://www.linkedin.com/in/yash-pokiyaone8/" },
                   { icon: <Github size={20} />, link: "https://github.com/yash-pokiya" },
                   { icon: <Globe size={20} />, link: "#" }
                 ].map((social, i) => (

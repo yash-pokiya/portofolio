@@ -47,9 +47,8 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
         {/* TOP BAR */}
         <div
-          className={`bg-white/95 dark:bg-black/95 border-b border-black/5 dark:border-white/5 transition-all duration-500 overflow-hidden ${
-            scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
-          }`}
+          className={`bg-white/95 dark:bg-black/95 border-b border-black/5 dark:border-white/5 transition-all duration-500 overflow-hidden ${scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
+            }`}
         >
           <div className="max-w-7xl mx-auto px-8 flex justify-between items-center h-12 text-black dark:text-white">
             <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-indigo-500">
@@ -79,11 +78,10 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
         {/* MAIN NAV */}
         <div
-          className={`transition-all duration-500 ${
-            scrolled
+          className={`transition-all duration-500 ${scrolled
               ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl py-3 shadow-lg border-b border-black/10 dark:border-white/10'
               : 'bg-white/80 dark:bg-black/80 py-6'
-          }`}
+            }`}
         >
           <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
 
@@ -97,9 +95,8 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
               <Link
                 to="/"
-                className={`font-black uppercase transition-all text-black dark:text-white ${
-                  scrolled ? 'text-lg tracking-[0.3em]' : 'text-2xl tracking-[0.4em]'
-                }`}
+                className={`font-black uppercase transition-all text-black dark:text-white ${scrolled ? 'text-lg tracking-[0.3em]' : 'text-2xl tracking-[0.4em]'
+                  }`}
               >
                 Yash <span className="text-indigo-500">Pokiya</span>
               </Link>
@@ -120,10 +117,10 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
               {/* SOCIAL */}
               <div className="flex items-center gap-4 border-l border-black/10 dark:border-white/10 pl-6">
-                <a href="https://github.com/yash-pokiya" target="_blank" rel="noreferrer">
+                <a href="https://github.com/yash-pokiya" target="_blank" rel="noreferrer" className="text-black dark:text-white hover:text-indigo-500 transition-colors">
                   <Github size={20} />
                 </a>
-                <a href="#">
+                <a href="https://www.linkedin.com/in/yash-pokiyaone8/" target="_blank" rel="noreferrer" className="text-black dark:text-white hover:text-indigo-500 transition-colors">
                   <Linkedin size={20} />
                 </a>
               </div>
@@ -133,20 +130,18 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
         {/* BOTTOM NAV */}
         <nav
-          className={`hidden lg:block bg-white/90 dark:bg-black/90 transition-all duration-500 overflow-hidden ${
-            scrolled ? 'max-h-0 opacity-0' : 'max-h-16 opacity-100 border-t'
-          }`}
+          className={`hidden lg:block bg-white/90 dark:bg-black/90 transition-all duration-500 overflow-hidden ${scrolled ? 'max-h-0 opacity-0' : 'max-h-16 opacity-100 border-t'
+            }`}
         >
           <div className="max-w-7xl mx-auto px-8 flex justify-center gap-12 py-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-[10px] font-black uppercase tracking-[0.3em] ${
-                  location.pathname === item.path
+                className={`text-[10px] font-black uppercase tracking-[0.3em] ${location.pathname === item.path
                     ? 'text-indigo-500'
                     : 'text-zinc-600 dark:text-zinc-300 hover:text-indigo-500'
-                }`}
+                  }`}
               >
                 {item.name}
               </Link>
@@ -157,9 +152,8 @@ const Layout = ({ children, isDark, setIsDark }) => {
 
       {/* ✅ FIXED MAIN CONTENT (NO JUMP) */}
       <main
-        className={`transition-all duration-500 min-h-screen pb-12 ${
-          scrolled ? 'pt-32' : 'pt-56'
-        }`}
+        className={`transition-all duration-500 min-h-screen pb-12 ${scrolled ? 'pt-32' : 'pt-56'
+          }`}
       >
         {children}
       </main>
@@ -196,6 +190,18 @@ const Layout = ({ children, isDark, setIsDark }) => {
                   >
                     {item.name}
                   </Link>
+                ))}
+              </div>
+
+              <div className="flex gap-4 pt-8 border-t border-white/10">
+                {[
+                  { icon: <Linkedin size={20} />, link: "https://www.linkedin.com/in/yash-pokiyaone8/" },
+                  { icon: <Github size={20} />, link: "https://github.com/yash-pokiya" },
+                  { icon: <Globe size={20} />, link: "#" }
+                ].map((social, i) => (
+                  <a key={i} href={social.link} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white hover:text-indigo-500 transition-all shadow-xl">
+                    {social.icon}
+                  </a>
                 ))}
               </div>
             </motion.aside>

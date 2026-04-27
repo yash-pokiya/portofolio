@@ -11,7 +11,7 @@ const Experience = () => {
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
           <span className="glass-tag text-indigo-500">System // Experience</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
             Professional <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">History</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
@@ -36,7 +36,7 @@ const Experience = () => {
                   <Briefcase size={24} />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-black dark:text-white">MERN Stack Intern</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-[var(--text-main)]">MERN Stack Intern</h3>
                   <p className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.3em]">LaMinds // Surat, IN</p>
                 </div>
               </div>
@@ -45,18 +45,18 @@ const Experience = () => {
               </p>
               <div className="flex flex-wrap gap-2">
                 {["MongoDB", "Express", "React", "Node.js"].map(t => (
-                  <span key={t} className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-[9px] font-black uppercase tracking-widest">
+                  <span key={t} className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-[9px] font-black uppercase tracking-widest text-[var(--text-main)]">
                     {t}
                   </span>
                 ))}
               </div>
             </div>
             <div className="md:w-1/3 flex flex-col justify-between items-end border-l border-black/5 dark:border-white/5 pl-12">
-              <div className="text-right">
+              <div className="text-right text-[var(--text-main)]">
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Deployment Period</span>
                 <p className="text-lg font-black uppercase italic mt-1">3 Months</p>
               </div>
-              <div className="text-right">
+              <div className="text-right text-[var(--text-main)]">
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Location Strategy</span>
                 <p className="text-sm font-black uppercase mt-1">Sumul Dairy Rd, Surat</p>
               </div>
@@ -84,7 +84,7 @@ const Experience = () => {
                 </div>
                 <div>
                   <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Status Code</span>
-                  <h3 className="text-3xl font-black uppercase tracking-tighter leading-none mt-2">Active <br /> Pursuit</h3>
+                  <h3 className="text-3xl font-black uppercase tracking-tighter leading-none mt-2 text-[var(--text-main)]">Active <br /> Pursuit</h3>
                 </div>
               </div>
               <div className="relative z-10 flex items-center gap-3">
@@ -99,11 +99,11 @@ const Experience = () => {
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
                     <span className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.4em]">Role Objective</span>
-                    <h2 className="text-4xl font-black uppercase tracking-tighter text-black dark:text-white">Practical Intern</h2>
+                    <h2 className="text-4xl font-black uppercase tracking-tighter text-[var(--text-main)]">Practical Intern</h2>
                   </div>
                   <div className="flex flex-col items-end">
                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1">Target Location</span>
-                    <span className="text-xs font-black uppercase italic text-black dark:text-white">Surat, IN // Remote</span>
+                    <span className="text-xs font-black uppercase italic text-[var(--text-main)]">Surat, IN // Remote</span>
                   </div>
                 </div>
 

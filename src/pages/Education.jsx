@@ -9,11 +9,11 @@ const Education = () => {
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
           <span className="glass-tag text-indigo-500">System // Foundation</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
             Academic <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Architecture</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
-            Deployment Log: SY BCA in Progress. Core focus on system logic, <br /> database architectures, and full-stack development methodologies.
+            Deployment Log: SY BCA Student // Logic Builder. <br /> Focused on bridging human requirements with high-performance digital logic.
           </p>
         </div>
       </section>
@@ -52,7 +52,7 @@ const Education = () => {
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
                     <span className="text-indigo-500 text-[10px] font-black uppercase tracking-[0.4em]">Primary Degree</span>
-                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black dark:text-white">BCA - SY</h2>
+                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-[var(--text-main)]">BCA - SY</h2>
                     <p className="text-zinc-500 font-bold uppercase tracking-widest text-xs">Bachelor of Computer Applications</p>
                   </div>
                   <div className="flex flex-col items-end">
@@ -76,7 +76,7 @@ const Education = () => {
                       <div key={i} className="p-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex items-center gap-4 group-hover:border-indigo-500/30 transition-all">
                         <div className="text-indigo-500">{item.icon}</div>
                         <div>
-                          <p className="text-[11px] font-black uppercase tracking-widest text-black dark:text-white leading-tight">{item.title}</p>
+                          <p className="text-[11px] font-black uppercase tracking-widest text-[var(--text-main)] leading-tight">{item.title}</p>
                           <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 mt-1">{item.desc}</p>
                         </div>
                       </div>
@@ -87,7 +87,7 @@ const Education = () => {
 
               <div className="pt-12 flex items-center gap-4 border-t border-black/5 dark:border-white/5">
                 <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400">Institutional Unit:</span>
-                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-700 dark:text-zinc-300">Sutex Bank College of Computer Applications</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-main)]">Sutex Bank College of Computer Applications</span>
               </div>
             </div>
           </div>
@@ -103,7 +103,7 @@ const Education = () => {
         ].map((meta, i) => (
           <div key={i} className="bento-card p-8 flex flex-col justify-center items-center text-center space-y-4">
             <span className="text-[9px] font-black uppercase tracking-[0.4em] text-indigo-500">{meta.label}</span>
-            <p className="text-xl font-black uppercase tracking-tighter text-black dark:text-white">{meta.val}</p>
+            <p className="text-xl font-black uppercase tracking-tighter text-[var(--text-main)]">{meta.val}</p>
           </div>
         ))}
       </section>

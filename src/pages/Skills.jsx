@@ -43,12 +43,12 @@ const Skills = () => {
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
-          <span className="glass-tag text-indigo-500">System // Capabilities</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-            Technical <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Arsenal</span>
+          <span className="glass-tag text-indigo-500">System // Arsenal</span>
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
+            Technical <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Modules</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
-            Logic deployment in progress. Specialized in MERN stack architectures <br /> with a core focus on logical integrity and performance.
+            Deployment Log: SY BCA Tech Stack. Focused on modular architectures, <br /> performance optimization, and logic consistency.
           </p>
         </div>
       </section>
@@ -75,7 +75,7 @@ const Skills = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-black dark:text-white">
+                <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[var(--text-main)]">
                   {category.title}
                 </h3>
                 
@@ -83,10 +83,10 @@ const Skills = () => {
                   {category.skills.map((skill) => (
                     <div key={skill.name} className="space-y-3">
                       <div className="flex justify-between items-end">
-                        <span className="text-[11px] font-black uppercase tracking-widest text-zinc-800 dark:text-zinc-200">
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--text-main)]">
                           {skill.name}
                         </span>
-                        <span className="text-[10px] font-black opacity-40 text-black dark:text-white">{skill.level}%</span>
+                        <span className="text-[10px] font-black opacity-40 text-[var(--text-main)]">{skill.level}%</span>
                       </div>
                       <div className="h-1 w-full bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
                         <motion.div

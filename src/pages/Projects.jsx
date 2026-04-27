@@ -48,11 +48,11 @@ const Projects = () => {
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
         <div className="space-y-6 max-w-2xl">
           <span className="glass-tag text-indigo-500">System // Deployments</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-            Digital <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500">Architectures</span>
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
+            Selected <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-500 font-black">Architectures</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
-            Deployment log: 03 Major Systems Active. Focus on performance, <br /> multi-currency logic, and real estate data structures.
+            Deployment Log: 03 Major Systems Online. <br /> Focused on full-stack MERN and Next.js infrastructures.
           </p>
         </div>
       </section>
@@ -99,7 +99,7 @@ const Projects = () => {
                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-500">{project.category}</span>
                     <Code2 size={20} className="opacity-20" />
                   </div>
-                  <h3 className="text-4xl md:text-5xl font-black uppercase mb-6 tracking-tighter group-hover:text-indigo-500 transition-colors">
+                  <h3 className="text-4xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)] group-hover:text-indigo-500 transition-colors duration-500">
                     {project.title}
                   </h3>
                   <p className="text-zinc-700 dark:text-zinc-300 text-base font-bold leading-relaxed mb-10 max-w-xl">
