@@ -1,75 +1,77 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github, Target } from 'lucide-react'
+import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github } from 'lucide-react'
+import { aboutData, personalInfo, servicesData } from '../data/portfolioData'
 
 const About = () => {
   return (
-    <div className="max-w-7xl mx-auto px-8 py-12 space-y-24">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
       {/* HEADER */}
-      <section className="flex flex-col md:flex-row md:items-end justify-between gap-12">
-        <div className="space-y-6 max-w-2xl">
-          <span className="glass-tag text-violet-500">System // Identity</span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
-            Architectural <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-purple-500 to-indigo-600 font-black">Profile</span>
+      <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
+        <div className="space-y-4 max-w-2xl">
+          <span className="mono-label text-[var(--signal)]">{aboutData.headerTag}</span>
+          <h1 className="font-display text-4xl md:text-6xl font-black uppercase text-[var(--ink)] tracking-tight">
+            {aboutData.title}
           </h1>
-          <p className="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">
-            Deployment Log: SY BCA Student // Logic Builder. <br /> Focused on bridging human requirements with high-performance digital logic.
+          <p className="text-sm font-medium text-[var(--ink-soft)] uppercase tracking-wider">
+            {aboutData.subTitle}
           </p>
-          <div className="flex items-center gap-4 pt-4">
-            <a href="https://www.linkedin.com/in/yash-pokiyaone8/" target="_blank" rel="noreferrer" className="glass-tag text-violet-500 flex items-center gap-2 hover:bg-violet-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-widest">
-              <Linkedin size={12} /> LinkedIn Profile
-            </a>
-            <a href="https://github.com/yash-pokiya" target="_blank" rel="noreferrer" className="glass-tag text-zinc-500 flex items-center gap-2 hover:bg-zinc-800 hover:text-white transition-all text-[9px] font-black uppercase tracking-widest">
-              <Github size={12} /> GitHub Profile
-            </a>
-          </div>
         </div>
-        <div className="hidden md:flex flex-col items-end gap-4">
-          <div className="w-24 h-24 rounded-3xl bg-violet-600 flex items-center justify-center text-white shadow-2xl shadow-violet-500/20">
-            <Linkedin size={40} />
-          </div>
+
+        <div className="flex items-center gap-3">
+          <a 
+            href={personalInfo.linkedinUrl} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="tag-outline flex items-center gap-2"
+          >
+            <Linkedin size={13} /> LINKEDIN
+          </a>
+          <a 
+            href={personalInfo.githubUrl} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="tag-outline flex items-center gap-2"
+          >
+            <Github size={13} /> GITHUB
+          </a>
         </div>
       </section>
 
+      {/* DOSSIER & FOCUS GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* MAIN BIO CARD */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="lg:col-span-8 bento-card p-12 group relative overflow-hidden"
+          className="lg:col-span-8 instrument-card p-8 md:p-12 space-y-8"
         >
-          <div className="bento-grid-bg" />
-          <div className="relative z-10 space-y-12">
-            <div className="flex justify-between items-start">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-[var(--accent)]">
-                  <User size={24} />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-[var(--text-main)]">Professional Dossier</h3>
-                  <div className="flex items-center gap-2 text-[var(--accent)] text-[10px] font-black uppercase tracking-[0.3em]">
-                    <MapPin size={12} /> Based in Surat, India
-                  </div>
+          <div className="flex justify-between items-start pb-6 border-b border-[var(--line)]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-md border border-[var(--line)] flex items-center justify-center text-[var(--ink)]">
+                <User size={18} />
+              </div>
+              <div>
+                <h3 className="font-display text-xl font-bold uppercase text-[var(--ink)]">Professional Dossier</h3>
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-[var(--ink-soft)]">
+                  <MapPin size={11} className="text-[var(--signal)]" /> {personalInfo.location.toUpperCase()}
                 </div>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-60 text-black dark:text-white">Unit // 01</span>
             </div>
+            <span className="mono-label text-[var(--ink-soft)]">UNIT // 01</span>
+          </div>
 
-            <p className="text-zinc-700 dark:text-zinc-300 text-xl font-bold leading-relaxed max-w-3xl">
-              I am a motivated SY BCA student and aspiring Web Developer seeking a practical internship at a local company to apply and strengthen my skills in HTML, CSS, Bootstrap, and JavaScript. I'm eager to learn backend technologies and databases while contributing to real-world web development projects.
-            </p>
+          <p className="text-lg text-[var(--ink)] font-normal leading-relaxed max-w-[65ch]">
+            {aboutData.dossier}
+          </p>
 
-            <div className="flex flex-wrap gap-3">
-              {['Quick Learner', 'Team Player', 'Logic Builder', 'Problem Solver'].map(tag => (
-                <span key={tag} className="px-5 py-2 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-zinc-800 dark:text-zinc-200">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="absolute top-12 right-12 w-16 h-16 rounded-2xl bg-[var(--accent)] flex items-center justify-center text-white rotate-12 group-hover:rotate-0 transition-transform duration-700 shadow-2xl shadow-violet-500/20">
-              <Target size={32} />
-            </div>
+          <div className="pt-4 border-t border-[var(--line)] flex flex-wrap gap-2">
+            {aboutData.traits.map(tag => (
+              <span key={tag} className="tag-outline">
+                {tag}
+              </span>
+            ))}
           </div>
         </motion.div>
 
@@ -79,73 +81,70 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="lg:col-span-4 bento-card p-10 bg-linear-to-br from-violet-600 to-indigo-600 text-white relative overflow-hidden group"
+          className="lg:col-span-4 instrument-card p-8 flex flex-col justify-between"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent" />
-          <div className="bento-grid-bg opacity-20" />
-          
-          <div className="relative z-10 flex flex-col h-full justify-between gap-12">
-            <div className="flex justify-between items-start">
-              <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                <Brain size={24} />
-              </div>
-              <span className="text-[9px] font-black uppercase tracking-[0.4em] opacity-60">Execution</span>
+          <div className="flex justify-between items-start pb-6 border-b border-[var(--line)]">
+            <div className="w-10 h-10 rounded-md border border-[var(--line)] flex items-center justify-center text-[var(--ink)]">
+              <Brain size={18} />
             </div>
+            <span className="mono-label text-[var(--signal)]">CURRENT EXECUTION</span>
+          </div>
 
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/60 mb-2">Current Focus</p>
-              <h4 className="text-3xl font-black uppercase tracking-tighter leading-tight">
-                Backend <br /> Logic Systems
-              </h4>
-            </div>
+          <div className="my-8 space-y-2">
+            <span className="mono-label text-[var(--ink-soft)]">CORE DIRECTIVE</span>
+            <h4 className="font-display text-2xl font-bold uppercase text-[var(--ink)] leading-tight">
+              {aboutData.currentFocus}
+            </h4>
+            <p className="text-xs text-[var(--ink-soft)] pt-2">
+              {aboutData.focusDesc}
+            </p>
+          </div>
 
-            <div className="p-4 rounded-xl bg-white/10 border border-white/10">
-              <div className="flex items-center gap-3 text-[11px] font-black uppercase tracking-widest">
-                <Terminal size={14} className="opacity-60" /> Node.js & Express.js
-              </div>
+          <div className="p-4 rounded-md border border-[var(--line)] bg-[var(--paper)]">
+            <div className="flex items-center gap-2 font-mono text-xs font-semibold text-[var(--ink)]">
+              <Terminal size={14} className="text-[var(--signal)]" /> {aboutData.currentFocusSub.toUpperCase()}
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* ADDITIONAL METADATA */}
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        {[
-          { icon: <Code2 size={20} />, label: "Philosophy", val: "Clean Architectures" },
-          { icon: <Coffee size={20} />, label: "Routine", val: "Continuous Logic" },
-          { icon: <Globe size={20} />, label: "Deployment", val: "Surat // Global" },
-          { icon: <Award size={20} />, label: "Status", val: "Internship Search" }
-        ].map((item, i) => (
-          <div key={i} className="bento-card p-8 flex flex-col items-center text-center space-y-4">
-            <div className="text-indigo-500">{item.icon}</div>
-            <div className="space-y-1">
-              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500">{item.label}</span>
-              <p className="text-xs font-black uppercase tracking-widest text-[var(--text-main)]">{item.val}</p>
+      {/* SERVICES OFFERED (PLAIN MONO-LABELED LIST) */}
+      <section className="instrument-card p-8 md:p-12 space-y-8">
+        <div className="flex justify-between items-center pb-6 border-b border-[var(--line)]">
+          <div className="space-y-1">
+            <span className="mono-label text-[var(--signal)]">TECHNICAL CAPABILITIES</span>
+            <h3 className="font-display text-2xl font-bold uppercase text-[var(--ink)]">Services Specification</h3>
+          </div>
+          <span className="mono-label text-[var(--ink-soft)]">04 SERVICES ACTIVE</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
+          {servicesData.map((service, idx) => (
+            <div key={service.id} className={`space-y-3 ${idx > 0 && idx % 2 !== 0 ? 'md:pl-8' : ''} ${idx > 0 ? 'pt-6 md:pt-0' : ''}`}>
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-xs font-bold text-[var(--signal)]">{service.id}</span>
+                <h4 className="font-display text-lg font-bold uppercase text-[var(--ink)]">{service.title}</h4>
+              </div>
+              <p className="font-mono text-xs text-[var(--ink-soft)] leading-relaxed">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* METADATA STRIP */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {aboutData.metadata.map((item, i) => (
+          <div key={i} className="instrument-card p-6 flex flex-col items-start space-y-3">
+            <div className="text-[var(--signal)]">
+              {i === 0 ? <Code2 size={18} /> : i === 1 ? <Coffee size={18} /> : i === 2 ? <Globe size={18} /> : <Award size={18} />}
+            </div>
+            <div>
+              <span className="mono-label text-[var(--ink-soft)] block">{item.label}</span>
+              <p className="font-display text-sm font-bold uppercase text-[var(--ink)] mt-0.5">{item.val}</p>
             </div>
           </div>
         ))}
       </section>
-
-      {/* INSTITUTIONAL UNIT */}
-      <div className="bento-card p-12 relative overflow-hidden group">
-        <div className="bento-grid-bg opacity-30 group-hover:opacity-100 transition-opacity" />
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-center gap-8">
-            <h2 className="text-6xl font-black text-black/5 dark:text-white/5 uppercase select-none">SY</h2>
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-1">Academic Deployment</p>
-              <h3 className="text-2xl font-black uppercase tracking-tight text-[var(--text-main)]">BCA Student</h3>
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Sutex Bank College of Computer Applications</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => document.getElementById('education').scrollIntoView({ behavior: 'smooth' })}
-            className="btn-neo px-12 py-4 text-[10px] font-black uppercase tracking-[0.4em]"
-          >
-            View Academic Path
-          </button>
-        </div>
-      </div>
     </div>
   )
 }

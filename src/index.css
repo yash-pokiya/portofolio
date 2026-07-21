@@ -1,107 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-primary: 'Outfit', sans-serif;
-  --dark-mode: class;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
   
-  --color-brand-black: #050505;
-  --color-brand-gray: #111111;
-  --color-brand-indigo: #6366f1;
-  --color-brand-purple: #a855f7;
-  
-  --radius-bento: 40px;
+  --radius-card: 12px;
 }
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;500;600;700;800;900&display=swap');
-
   html {
     scroll-behavior: smooth;
   }
 
   :root {
-    --bg-main: #ffffff;
-    --text-main: #0a0a0a;
-    --text-secondary: #475569;
-    --accent: #8b5cf6;
-    --card-bg: rgba(255, 255, 255, 0.8);
-    --nav-bg: rgba(255, 255, 255, 0.8);
-    --nav-border: rgba(0, 0, 0, 0.05);
-    --noise-opacity: 0.01;
-    --grid-opacity: 0.02;
-  }
-
-  .dark {
-    --bg-main: #050505;
-    --text-main: #ffffff;
-    --text-secondary: #94a3b8;
-    --accent: #a78bfa;
-    --card-bg: rgba(15, 15, 15, 0.8);
-    --nav-bg: rgba(5, 5, 5, 0.9);
-    --nav-border: rgba(255, 255, 255, 0.08);
-    --noise-opacity: 0.4;
-    --grid-opacity: 0.1;
+    --paper: #FAFAF8;
+    --paper-raised: #FFFFFF;
+    --ink: #101012;
+    --ink-soft: #55565C;
+    --line: #DDDCD6;
+    --signal: #FF4405;
+    --signal-soft: #FFE9E2;
   }
 
   body {
-    @apply font-primary bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-500 overflow-x-hidden selection:bg-violet-500 selection:text-white;
-    scroll-behavior: smooth;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    overflow-x: hidden;
+    selection-background-color: var(--signal);
+    selection-color: #ffffff;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-size: 180px;
-    opacity: 0.05;
-    pointer-events: none;
+  /* Keyboard focus states using --signal outline */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
   }
 }
 
 @layer components {
-  .bento-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    @apply rounded-[2.5rem] backdrop-blur-xl transition-all duration-700 relative;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  /* Hairline Card Surface */
+  .instrument-card {
+    background-color: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(16, 16, 18, 0.04);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  /* Premium Inner Grid Effect */
-  .bento-grid-bg {
-    @apply absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none;
-    background-image: radial-gradient(var(--text-main) 1px, transparent 1px);
-    background-size: 32px 32px;
+  .instrument-card:hover {
+    border-color: var(--ink);
   }
 
-  .bento-card:hover {
-    @apply border-[var(--accent)]/50 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)];
-    transform: translateY(-4px);
+  /* Monospace Utility Labels */
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
 
-  .heading-hero {
-    color: var(--text-main);
-    @apply text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] uppercase;
+  /* Display Headline Styling */
+  .heading-display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: var(--ink);
   }
 
-  .btn-neo {
-    @apply relative px-10 py-4 bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-[0.2em] text-[10px] rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl;
+  /* Outline Tag Chips */
+  .tag-outline {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: transparent;
+    transition: all 0.15s ease;
   }
 
-  .btn-neo::after {
+  .tag-outline:hover {
+    border-color: var(--signal);
+    background-color: var(--signal-soft);
+    color: var(--ink);
+  }
+
+  /* Signal Link Underline Hover */
+  .signal-underline {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: 600;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .signal-underline::after {
     content: '';
-    @apply absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:animate-[shimmer_2s_infinite];
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background-color: var(--signal);
+    transition: width 0.2s ease-in-out;
   }
 
-  .glass-tag {
-    @apply px-4 py-1.5 rounded-full border border-black/5 dark:border-white/10 bg-black/5 dark:bg-black/20 backdrop-blur-md text-[9px] font-black uppercase tracking-[0.2em] text-[var(--accent)];
+  .signal-underline:hover::after {
+    width: 100%;
   }
 }
 
-@keyframes shimmer {
-  100% { transform: translateX(100%); }
+::-webkit-scrollbar {
+  width: 6px;
 }
-
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-thumb { @apply bg-zinc-200 dark:bg-zinc-800 rounded-full border-2 border-transparent bg-clip-padding; }
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-soft);
+}

@@ -1,220 +1,212 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Sun, Moon, Github, Linkedin, Search, Menu, X, Cpu } from 'lucide-react'
+import React, { useState } from 'react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ScrollRuler from './ScrollRuler'
+import { useActiveSection } from '../hooks/useActiveSection'
+import { personalInfo } from '../data/portfolioData'
 
-const Layout = ({ children, isDark, setIsDark }) => {
-  const [scrolled, setScrolled] = useState(false)
+const navItems = [
+  { name: 'Home', path: 'home', code: '01' },
+  { name: 'About', path: 'about', code: '02' },
+  { name: 'Projects', path: 'projects', code: '03' },
+  { name: 'Skills', path: 'skills', code: '04' },
+  { name: 'Experience', path: 'experience', code: '05' },
+  { name: 'Education', path: 'education', code: '06' },
+  { name: 'Blog', path: 'blog', code: '07' },
+  { name: 'Contact', path: 'contact', code: '08' },
+]
+
+const Layout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40)
-      
-      // Smart section detection
-      const sections = ['home', 'about', 'projects', 'skills', 'experience', 'education', 'blog', 'contact']
-      const current = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 150 && rect.bottom >= 150
-        }
-        return false
-      })
-      if (current) setActiveSection(current)
-    }
+  const { activeSection, scrolledPastHeader, scrollToSection } = useActiveSection()
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const navItems = [
-    { name: 'Home', path: 'home' },
-    { name: 'About', path: 'about' },
-    { name: 'Projects', path: 'projects' },
-    { name: 'Skills', path: 'skills' },
-    { name: 'Experience', path: 'experience' },
-    { name: 'Education', path: 'education' },
-    { name: 'Blog', path: 'blog' },
-    { name: 'Contact', path: 'contact' },
-  ]
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id)
-    if (element) {
-      const offset = 80 // Adjust based on header height
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = element.getBoundingClientRect().top
-      const elementPosition = elementRect - bodyRect
-      const offsetPosition = elementPosition - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
+  const handleNavClick = (path) => {
+    scrollToSection(path)
     setIsMenuOpen(false)
   }
 
   return (
-    <div className="min-h-screen relative font-primary scroll-smooth">
-      {/* NOISE & GRID */}
-      <div className="fixed inset-0 pointer-events-none opacity-[var(--noise-opacity)] mix-blend-overlay z-[10]" />
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_2px_2px,_var(--accent)_1px,_transparent_0)] bg-[size:40px_40px] opacity-[var(--grid-opacity)] z-0" />
+    <div className="min-h-screen relative font-body bg-[var(--paper)] text-[var(--ink)]">
+      {/* SCROLL RULER GAUGE */}
+      <ScrollRuler activeSection={activeSection} scrollToSection={scrollToSection} />
 
-      {/* UNIFIED HEADER */}
+      {/* FIXED TOP NAVBAR */}
       <header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 border-b ${
-          scrolled ? 'py-4 shadow-lg shadow-black/5' : 'py-6 border-transparent'
+        className={`fixed top-0 left-0 right-0 z-[100] bg-[var(--paper)] border-b border-[var(--line)] transition-all duration-200 ${
+          scrolledPastHeader ? 'py-3' : 'py-5'
         }`}
-        style={{
-          backgroundColor: scrolled ? 'var(--nav-bg)' : 'transparent',
-          borderColor: scrolled ? 'var(--nav-border)' : 'transparent',
-          backdropFilter: 'blur(16px)',
-        }}
       >
-        <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
-          {/* LOGO */}
-          <button onClick={() => scrollToSection('home')} className="group flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[var(--accent)] flex items-center justify-center text-white shadow-xl shadow-purple-500/20 group-hover:rotate-12 transition-transform duration-500">
-              <Cpu size={20} />
-            </div>
-            <div className="flex flex-col items-start">
-              <span className="text-sm font-black uppercase tracking-[0.3em] text-[var(--text-main)]">Yash <span className="text-[var(--accent)]">Pokiya</span></span>
-              <span className="text-[8px] font-black uppercase tracking-[0.4em] opacity-40">System Architect</span>
-            </div>
-          </button>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+          
+          {/* LEFT: YP. WORDMARK */}
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={() => handleNavClick('home')} 
+              className="font-display font-black text-2xl tracking-tighter text-[var(--ink)] hover:opacity-80 transition-opacity"
+            >
+              YP<span className="text-[var(--signal)]">.</span>
+            </button>
 
-          {/* DESKTOP NAV */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => scrollToSection(item.path)}
-                className={`relative text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:text-[var(--accent)] ${
-                  activeSection === item.path ? 'text-[var(--accent)]' : 'text-[var(--text-main)]'
-                }`}
-              >
-                {item.name}
-                {activeSection === item.path && (
-                  <motion.div
-                    layoutId="active-nav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--accent)]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
+            {/* MOBILE INLINE AVAILABILITY DOT */}
+            <div className="lg:hidden flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-[var(--line)] bg-[var(--paper-raised)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--signal)] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
+              <span className="font-mono text-[9px] font-bold text-[var(--ink)] uppercase">OPEN</span>
+            </div>
+          </div>
+
+          {/* CENTER-RIGHT: DESKTOP NAV LINKS (>=1024px) */}
+          <nav className="hidden lg:flex items-center gap-7">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.path
+              return (
+                <button
+                  key={item.path}
+                  onClick={() => handleNavClick(item.path)}
+                  className={`relative font-mono text-[0.75rem] font-medium uppercase tracking-[0.12em] transition-colors py-1 ${
+                    isActive ? 'text-[var(--signal)] font-bold' : 'text-[var(--ink-soft)] hover:text-[var(--ink)]'
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-nav"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[var(--signal)]"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              )
+            })}
           </nav>
 
-          {/* ACTIONS */}
-          <div className="hidden lg:flex items-center gap-6">
-            <div className="flex items-center gap-4 border-r border-black/10 dark:border-white/10 pr-6">
-              <a href="https://github.com/yash-pokiya" target="_blank" rel="noreferrer" className="text-[var(--text-main)] hover:text-[var(--accent)] transition-colors">
-                <Github size={18} />
-              </a>
-              <a href="https://www.linkedin.com/in/yash-pokiyaone8/" target="_blank" rel="noreferrer" className="text-[var(--text-main)] hover:text-[var(--accent)] transition-colors">
-                <Linkedin size={18} />
-              </a>
-            </div>
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className="w-10 h-10 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white transition-all shadow-lg shadow-purple-500/10"
+          {/* FAR RIGHT: AVAILABILITY PILL & CONTACT CTA */}
+          <div className="hidden lg:flex items-center gap-5">
+            {/* AVAILABILITY PILL */}
+            <div 
+              className="flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--line)] bg-[var(--paper-raised)]"
+              title={personalInfo.statusLabel}
             >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              <span className="w-2 h-2 rounded-full bg-[var(--signal)] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
+              <span className="font-mono text-[10px] font-bold text-[var(--ink)] uppercase tracking-wider">
+                {personalInfo.status}
+              </span>
+            </div>
+
+            {/* CONTACT CTA BUTTON */}
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="px-5 py-2 rounded-full bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-[11px] font-bold uppercase tracking-wider hover:bg-[var(--signal)] transition-colors flex items-center gap-1.5 shadow-xs"
+            >
+              Contact <ArrowUpRight size={14} />
             </button>
           </div>
 
-          {/* MOBILE TRIGGER */}
+          {/* MOBILE MENU TRIGGER (<1024px) */}
           <button
-            onClick={() => setIsMenuOpen(true)}
-            className="lg:hidden w-10 h-10 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[var(--text-main)]"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden text-[var(--ink)] hover:text-[var(--signal)] transition-colors p-1"
+            aria-label="Toggle Navigation Menu"
           >
-            <Menu size={20} />
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
-      <main className="transition-all duration-500 relative z-10 pt-24">
+      {/* MAIN CONTENT AREA */}
+      <main className="relative z-10 pt-24 min-h-[calc(100vh-100px)]">
         {children}
       </main>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU DRAWER (<1024px) */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
+            {/* OVERLAY */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[1000]"
+              className="fixed inset-0 bg-[#101012]/40 z-[1000]"
             />
 
+            {/* DRAWER PANEL */}
             <motion.aside
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              className="fixed right-0 top-0 h-full w-[85%] max-w-sm bg-white dark:bg-zinc-900 z-[1001] p-8 shadow-2xl flex flex-col"
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed right-0 top-0 h-full w-[85%] max-w-[360px] bg-[var(--paper-raised)] z-[1001] border-l border-[var(--line)] p-6 flex flex-col justify-between"
             >
-              <div className="flex justify-between items-center mb-12">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center text-white">
-                    <Cpu size={16} />
-                  </div>
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-[var(--text-main)]">System</span>
+              <div>
+                {/* DRAWER HEADER */}
+                <div className="flex justify-between items-center pb-5 mb-4 border-b border-[var(--line)]">
+                  <span className="font-display font-black text-xl text-[var(--ink)]">
+                    YP<span className="text-[var(--signal)]">.</span> INDEX
+                  </span>
+                  <button 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="p-1 text-[var(--ink)] hover:text-[var(--signal)]"
+                  >
+                    <X size={20} />
+                  </button>
                 </div>
-                <button onClick={() => setIsMenuOpen(false)} className="p-2 rounded-lg bg-black/5 dark:bg-white/5 text-[var(--text-main)]">
-                  <X size={20} />
-                </button>
+
+                {/* NAV LINKS STACK */}
+                <nav className="space-y-0 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+                  {navItems.map((item) => {
+                    const isActive = activeSection === item.path
+                    return (
+                      <button
+                        key={item.path}
+                        onClick={() => handleNavClick(item.path)}
+                        className={`w-full text-left py-3.5 px-2 flex items-center justify-between transition-colors ${
+                          isActive 
+                            ? 'text-[var(--signal)] font-bold' 
+                            : 'text-[var(--ink)] hover:text-[var(--signal)]'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-xs text-[var(--ink-soft)]">{item.code}</span>
+                          <span className="font-mono text-xs uppercase tracking-wider font-semibold">{item.name}</span>
+                        </div>
+                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[var(--signal)]" />}
+                      </button>
+                    )
+                  })}
+                </nav>
               </div>
 
-              <nav className="space-y-4">
-                {navItems.map((item) => (
-                  <button
-                    key={item.path}
-                    onClick={() => scrollToSection(item.path)}
-                    className={`w-full text-left p-4 rounded-xl transition-all font-black uppercase tracking-widest text-[11px] ${
-                      activeSection === item.path 
-                      ? 'bg-[var(--accent)] text-white shadow-xl shadow-purple-500/20' 
-                      : 'bg-black/5 dark:bg-white/5 text-[var(--text-main)] hover:bg-black/10 dark:hover:bg-white/10'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </nav>
-
-              <div className="mt-auto pt-12 space-y-6">
-                <button
-                  onClick={() => {
-                    setIsDark(!isDark)
-                    setIsMenuOpen(false)
-                  }}
-                  className="w-full p-4 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-between text-[var(--text-main)] font-black uppercase tracking-widest text-[10px]"
-                >
-                  {isDark ? 'Light Protocol' : 'Dark Protocol'}
-                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
-                </button>
-
-                <div className="pt-8 border-t border-black/5 dark:border-white/10 flex gap-4">
-                  <a href="https://github.com/yash-pokiya" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[var(--text-main)]">
-                    <Github size={20} />
-                  </a>
-                  <a href="https://www.linkedin.com/in/yash-pokiyaone8/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center text-[var(--text-main)]">
-                    <Linkedin size={18} />
-                  </a>
+              {/* DRAWER BOTTOM ACTION PINNED */}
+              <div className="pt-6 border-t border-[var(--line)] space-y-4">
+                <div className="flex items-center justify-between px-3 py-2 rounded-md border border-[var(--line)] bg-[var(--paper)]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[var(--signal)] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
+                    <span className="font-mono text-xs font-bold text-[var(--ink)] uppercase">
+                      {personalInfo.status}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[9px] text-[var(--ink-soft)]">2026</span>
                 </div>
+
+                <button
+                  onClick={() => handleNavClick('contact')}
+                  className="w-full py-3 rounded-full bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-wider hover:bg-[var(--signal)] transition-colors flex items-center justify-center gap-2"
+                >
+                  Contact <ArrowUpRight size={16} />
+                </button>
               </div>
             </motion.aside>
           </>
         )}
       </AnimatePresence>
 
-      <footer className="max-w-7xl mx-auto px-8 py-12 text-center border-t border-black/5 dark:border-white/5 opacity-40">
-        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-[var(--text-main)]">© 2026 Yash Pokiya // Systems Architecture</p>
+      {/* FOOTER */}
+      <footer className="max-w-7xl mx-auto px-6 md:px-12 py-12 text-center border-t border-[var(--line)] mt-24">
+        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--ink-soft)]">
+          © 2026 YASH POKIYA // INSTRUMENT PROTOCOL v2.0
+        </p>
       </footer>
     </div>
   )
