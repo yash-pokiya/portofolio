@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github } from 'lucide-react'
-import { aboutData, personalInfo, servicesData } from '../data/portfolioData'
+import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github, HelpCircle } from 'lucide-react'
+import { aboutData, personalInfo, servicesData, faqData } from '../data/portfolioData'
 
 const About = () => {
   return (
@@ -11,10 +11,10 @@ const About = () => {
         <div className="space-y-4 max-w-2xl">
           <span className="mono-label text-[var(--signal)]">{aboutData.headerTag}</span>
           <h1 className="font-display text-4xl md:text-6xl font-black uppercase text-[var(--ink)] tracking-tight">
-            {aboutData.title}
+            About | Yash Pokiya
           </h1>
           <p className="text-sm font-medium text-[var(--ink-soft)] uppercase tracking-wider">
-            {aboutData.subTitle}
+            Yash Pokiya is a Full Stack MERN Developer based in Surat, Gujarat, India. Bridging practical client specs with structured logic.
           </p>
         </div>
 
@@ -126,6 +126,32 @@ const About = () => {
                 <h4 className="font-display text-lg font-bold uppercase text-[var(--ink)]">{service.title}</h4>
               </div>
               <p className="font-mono text-xs text-[var(--ink-soft)] leading-relaxed">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* AI SEARCH & FAQ SECTION */}
+      <section className="instrument-card p-8 md:p-12 space-y-8" aria-label="Frequently Asked Questions about Yash Pokiya">
+        <div className="flex justify-between items-center pb-6 border-b border-[var(--line)]">
+          <div className="space-y-1">
+            <span className="mono-label text-[var(--signal)]">AI SEARCH OPTIMIZATION & ENTITY FAQ</span>
+            <h3 className="font-display text-2xl font-bold uppercase text-[var(--ink)] flex items-center gap-2">
+              <HelpCircle size={20} className="text-[var(--signal)]" /> Frequently Asked Questions
+            </h3>
+          </div>
+          <span className="mono-label text-[var(--ink-soft)]">YASH POKIYA ENTITY SPEC</span>
+        </div>
+
+        <div className="space-y-6 divide-y divide-[var(--line)]">
+          {faqData.map((faq, idx) => (
+            <div key={idx} className={`${idx > 0 ? 'pt-6' : ''} space-y-2`}>
+              <h4 className="font-display text-lg font-bold text-[var(--ink)] uppercase">
+                {faq.question}
+              </h4>
+              <p className="font-mono text-xs text-[var(--ink-soft)] leading-relaxed max-w-4xl">
+                {faq.answer}
+              </p>
             </div>
           ))}
         </div>

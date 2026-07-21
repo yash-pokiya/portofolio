@@ -1,8 +1,8 @@
 export const personalInfo = {
   name: "Yash Pokiya",
   wordmark: "YP.",
-  title: "SY BCA Student & Logic Builder",
-  subtitle: "System Architect // Full Stack Web Engineering Aspirant",
+  title: "Full Stack MERN Developer",
+  subtitle: "Full Stack MERN Developer from Surat, India | React, Node.js, Express, MongoDB",
   email: "yashpokiya44@gmail.com",
   location: "Surat, Gujarat, India",
   status: "OPEN",
@@ -15,7 +15,7 @@ export const personalInfo = {
 }
 
 export const heroData = {
-  roleTag: "SY BCA STUDENT // LOGIC BUILDER",
+  roleTag: "YASH POKIYA // FULL STACK MERN DEVELOPER",
   titleLine1: "TURNING CODE",
   titleLine2: "INTO EXPERIENCE.",
   statement: "I build digital products prioritizing performance, elegance, and logical integrity.",
@@ -35,9 +35,9 @@ export const heroData = {
 
 export const aboutData = {
   headerTag: "§02 // IDENTITY SPEC",
-  title: "Architectural Profile",
-  subTitle: "SY BCA Student & Logic Builder based in Surat, India. Bridging practical client specs with structured logic.",
-  dossier: "I am a motivated SY BCA student and aspiring Web Developer seeking a practical internship at a local company to apply and strengthen my skills in HTML, CSS, Bootstrap, and JavaScript. I'm eager to learn backend technologies and databases while contributing to real-world web development projects.",
+  title: "About Yash Pokiya",
+  subTitle: "Yash Pokiya is a Full Stack MERN Developer based in Surat, Gujarat, India. Bridging practical client specs with structured logic.",
+  dossier: "I am Yash Pokiya, a motivated SY BCA student and Full Stack MERN Developer from Surat, India. I specialize in building responsive React applications, robust Node.js/Express APIs, and scalable MongoDB databases. Eager to contribute to production web development projects.",
   traits: ["Quick Learner", "Team Player", "Logic Builder", "Problem Solver"],
   currentFocus: "Backend Logic Systems",
   currentFocusSub: "Node.js & Express.js",
@@ -82,6 +82,7 @@ export const projectsData = [
     link: "https://nestlyliving.vercel.app/",
     github: "https://github.com/yash-pokiya",
     image: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777294104/Screenshot_2026-04-27_181734_lqfk3t.png",
+    imageAlt: "NestlyLiving Real Estate Platform by Yash Pokiya - Full Stack MERN Developer using Next.js 14 and MongoDB",
     tech: ["Next.js 14", "Tailwind CSS", "MongoDB"],
     caseStudy: {
       challenge: "Managing complex filtering for thousands of properties without performance lag.",
@@ -97,6 +98,7 @@ export const projectsData = [
     link: "https://jewellery-store-six-zeta.vercel.app/",
     github: "https://github.com/yash-pokiya",
     image: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777294180/Screenshot_2026-04-27_181920_cjwkae.png",
+    imageAlt: "Caratior Luxury Jewellery E-commerce by Yash Pokiya - React and Node.js Developer featuring multi-currency sync",
     tech: ["MERN Stack", "Redux Toolkit", "JWT"],
     caseStudy: {
       challenge: "Implementing accurate multi-currency price conversion for 24k gold items.",
@@ -112,6 +114,7 @@ export const projectsData = [
     link: "https://ecommerce-mern-two-xi.vercel.app/",
     github: "https://github.com/yash-pokiya",
     image: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777294226/Screenshot_2026-04-27_182006_gdlkss.png",
+    imageAlt: "System E-commerce MERN Framework by Yash Pokiya - Full Stack Developer using Express and JWT Auth",
     tech: ["MongoDB", "Express", "React", "Node.js"],
     caseStudy: {
       challenge: "Building a secure admin dashboard to manage inventory and user permissions.",
@@ -243,5 +246,28 @@ export const blogData = [
     readTime: "4 MIN READ",
     tag: "GROWTH",
     featured: false
+  }
+]
+
+export const faqData = [
+  {
+    question: "Who is Yash Pokiya?",
+    answer: "Yash Pokiya is a Full Stack MERN Developer and BCA student based in Surat, Gujarat, India. He specializes in building modern web applications using React, Node.js, Express, MongoDB, and Tailwind CSS."
+  },
+  {
+    question: "What primary skills and technologies does Yash Pokiya know?",
+    answer: "Yash Pokiya's core tech stack includes HTML5, CSS3, JavaScript (ES6+), React.js, Redux Toolkit, Node.js, Express.js, MongoDB, RESTful APIs, JWT Authentication, C Language, Tailwind CSS, Bootstrap, Git, and GitHub."
+  },
+  {
+    question: "What is Yash Pokiya's work experience?",
+    answer: "Yash Pokiya works as a Web Developer / Full Stack Engineer at Settings Infotech in Surat, India. Previously, he completed a 3-month MERN Stack Internship at LaMinds."
+  },
+  {
+    question: "What are Yash Pokiya's major projects?",
+    answer: "Yash Pokiya's major projects include NestlyLiving (Real Estate Ecosystem built with Next.js 14 & MongoDB), Caratior (Luxury Jewellery E-commerce with multi-currency sync), and System E-commerce (MERN Framework baseline with JWT authentication)."
+  },
+  {
+    question: "Is Yash Pokiya available for hire or internships?",
+    answer: "Yes, Yash Pokiya is actively open for Full-Time Developer opportunities and Web Engineering Internships in Surat, Gujarat, India as well as Remote positions."
   }
 ]

@@ -14,10 +14,10 @@ const Projects = () => {
         <div className="space-y-4 max-w-2xl">
           <span className="mono-label text-[var(--signal)]">§03 // ARCHITECTURES</span>
           <h1 className="font-display text-4xl md:text-6xl font-black uppercase text-[var(--ink)] tracking-tight">
-            Selected Projects
+            Projects | Yash Pokiya
           </h1>
           <p className="text-sm font-medium text-[var(--ink-soft)] uppercase tracking-wider">
-            Deployment Log: 03 Major Web Systems Online. Full-width two-panel split architectures with literal JSON specs.
+            Featured Full Stack MERN and Next.js projects engineered by Yash Pokiya from Surat, India.
           </p>
         </div>
       </section>
@@ -35,6 +35,7 @@ const Projects = () => {
               type: 'json',
               text: JSON.stringify({
                 name: project.title,
+                developer: "Yash Pokiya",
                 category: project.category,
                 stack: project.tech,
                 description: project.description
@@ -60,7 +61,7 @@ const Projects = () => {
                 }`}>
                   <img 
                     src={project.image} 
-                    alt={project.title} 
+                    alt={project.imageAlt || `${project.title} by Yash Pokiya - Full Stack MERN Developer using ${project.tech.join(', ')}`} 
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" 
                   />
                   <div className="absolute top-4 left-4 bg-[var(--paper-raised)]/95 border border-[var(--line)] px-3 py-1 rounded-sm shadow-xs">
@@ -77,7 +78,7 @@ const Projects = () => {
                     variant="card"
                     staggerDelay={idx * 0.15}
                     lines={terminalLines}
-                    ariaLabel={`Project details for ${project.title}: Category ${project.category}, Stack: ${project.tech.join(', ')}`}
+                    ariaLabel={`Project details for ${project.title} developed by Yash Pokiya: Category ${project.category}, Tech Stack: ${project.tech.join(', ')}`}
                   />
                 </div>
               </div>
@@ -109,7 +110,7 @@ const Projects = () => {
                   target="_blank"
                   rel="noreferrer"
                   className="p-2.5 border border-[var(--line)] rounded-md text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors"
-                  title="Source Repository"
+                  title="Source Repository on GitHub"
                 >
                   <Github size={16} />
                 </a>

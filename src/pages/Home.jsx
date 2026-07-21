@@ -10,7 +10,7 @@ const heroTerminalLines = [
   { type: 'cmd', text: 'cat status.json' },
   { 
     type: 'json', 
-    text: `{\n  "location": "${personalInfo.location}",\n  "availability": "✓ ${personalInfo.statusLabel}",\n  "focus": ["Backend", "REST APIs", "Authentication", "MongoDB"]\n}` 
+    text: `{\n  "name": "${personalInfo.name}",\n  "role": "Full Stack MERN Developer",\n  "location": "${personalInfo.location}",\n  "availability": "✓ ${personalInfo.statusLabel}",\n  "focus": ["React", "Node.js", "Express", "MongoDB", "REST APIs"]\n}` 
   }
 ]
 
@@ -26,7 +26,7 @@ const Home = () => {
             className="flex items-center gap-2 text-[var(--signal)] font-mono text-xs font-semibold uppercase tracking-[0.15em]"
           >
             <span className="w-2 h-2 rounded-full bg-[var(--signal)]" />
-            {heroData.roleTag}
+            {personalInfo.name} // FULL STACK MERN DEVELOPER
           </motion.div>
 
           <motion.h1 
@@ -35,7 +35,10 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="font-display text-5xl md:text-8xl font-black tracking-tight leading-[0.95] uppercase text-[var(--ink)]"
           >
-            {heroData.titleLine1} <br /> <span className="italic font-normal">{heroData.titleLine2}</span>
+            Yash Pokiya <br />
+            <span className="italic font-normal text-3xl md:text-6xl block mt-2 text-[var(--ink-soft)]">
+              Full Stack MERN Developer
+            </span>
           </motion.h1>
         </div>
 
@@ -53,7 +56,7 @@ const Home = () => {
               title="yash@systems:~"
               variant="boot"
               lines={heroTerminalLines}
-              ariaLabel="System Boot Status: Yash Pokiya Full Stack Developer based in Surat Gujarat India, open to full-time and internship roles."
+              ariaLabel="System Boot Status: Yash Pokiya Full Stack MERN Developer based in Surat, Gujarat, India specializing in React, Node.js, Express, and MongoDB."
             />
 
             <div className="pt-6 border-t border-[var(--line)] mt-6 flex flex-wrap items-center justify-between gap-6">
@@ -61,7 +64,7 @@ const Home = () => {
                 href="#projects" 
                 className="px-6 py-3 bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-[0.12em] rounded-md hover:bg-[var(--signal)] transition-colors flex items-center gap-2"
               >
-                INITIALIZE EXPLORATION <ArrowUpRight size={14} />
+                EXPLORE PROJECTS <ArrowUpRight size={14} />
               </a>
 
               <div className="flex items-center gap-6 font-mono text-xs text-[var(--ink-soft)]">
@@ -88,12 +91,12 @@ const Home = () => {
             <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md border border-[var(--line)] bg-[var(--paper)]">
               <img 
                 src={personalInfo.photoUrl} 
-                alt={personalInfo.name} 
+                alt="Yash Pokiya - Full Stack MERN Developer from Surat India" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
               />
               <div className="absolute top-3 left-3 bg-[var(--paper-raised)]/90 border border-[var(--line)] px-2.5 py-1 rounded-sm">
                 <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[var(--ink)]">
-                  FIG 1.0 // DEVELOPER
+                  FIG 1.0 // YASH POKIYA
                 </span>
               </div>
             </div>
