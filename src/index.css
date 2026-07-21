@@ -22,6 +22,14 @@
     --line: #DDDCD6;
     --signal: #FF4405;
     --signal-soft: #FFE9E2;
+
+    /* Terminal Window Tokens */
+    --term-bg: #0D0D0F;
+    --term-chrome: #1A1A1D;
+    --term-text: #E4E4E7;
+    --term-muted: #85858C;
+    --term-success: #3ECF8E;
+    --term-prompt: #FF4405;
   }
 
   body {
@@ -122,6 +130,27 @@
 
   .signal-underline:hover::after {
     width: 100%;
+  }
+
+  /* Terminal Scanline Overlay */
+  .terminal-scanlines {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-scanlines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    z-index: 10;
   }
 }
 

@@ -1,7 +1,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Terminal, Code2 } from 'lucide-react'
+import { ArrowUpRight, Code2 } from 'lucide-react'
 import { heroData, personalInfo } from '../data/portfolioData'
+import TerminalWindow from '../components/TerminalWindow'
+
+const heroTerminalLines = [
+  { type: 'cmd', text: 'whoami' },
+  { type: 'text', text: `${personalInfo.name.toLowerCase().replace(/\s+/g, '-')} — full stack mern developer` },
+  { type: 'cmd', text: 'cat status.json' },
+  { 
+    type: 'json', 
+    text: `{\n  "location": "${personalInfo.location}",\n  "availability": "✓ ${personalInfo.statusLabel}",\n  "focus": ["Backend", "REST APIs", "Authentication", "MongoDB"]\n}` 
+  }
+]
 
 const Home = () => {
   return (
@@ -28,44 +39,24 @@ const Home = () => {
           </motion.h1>
         </div>
 
-        {/* HERO INSTRUMENT READOUT & PROFILE GRID */}
+        {/* HERO TERMINAL & PROFILE GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* INSTRUMENT READOUT CARD */}
+          {/* BOOT TERMINAL WINDOW */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ delay: 0.2 }} 
-            className="lg:col-span-8 instrument-card p-8 md:p-12 flex flex-col justify-between min-h-[440px] relative overflow-hidden"
+            className="lg:col-span-8 flex flex-col justify-between"
           >
-            <div className="flex justify-between items-start pb-6 border-b border-[var(--line)]">
-              <div className="space-y-1">
-                <span className="tag-outline">{heroData.version}</span>
-                <p className="mono-label text-[var(--ink-soft)] mt-2">ARCHITECTURAL LOGIC PROTOCOL</p>
-              </div>
+            <TerminalWindow
+              title="yash@systems:~"
+              variant="boot"
+              lines={heroTerminalLines}
+              ariaLabel="System Boot Status: Yash Pokiya Full Stack Developer based in Surat Gujarat India, open to full-time and internship roles."
+            />
 
-              <div className="text-right">
-                <p className="mono-label text-[var(--ink-soft)] mb-1">SYSTEM STATUS</p>
-                <div className="flex items-center justify-end gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[var(--signal)] animate-pulse" />
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--ink)]">
-                    {heroData.systemStatus}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="py-8 space-y-6">
-              <h2 className="font-display text-2xl md:text-4xl font-extrabold text-[var(--ink)] leading-snug tracking-tight">
-                {heroData.statement}
-              </h2>
-
-              <p className="text-sm text-[var(--ink-soft)] max-w-xl">
-                {personalInfo.subtitle}. Seeking practical web engineering internships for 2026.
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-6">
+            <div className="pt-6 border-t border-[var(--line)] mt-6 flex flex-wrap items-center justify-between gap-6">
               <a 
                 href="#projects" 
                 className="px-6 py-3 bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-[0.12em] rounded-md hover:bg-[var(--signal)] transition-colors flex items-center gap-2"
@@ -130,80 +121,6 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* QUICK HIGHLIGHT READOUTS */}
-      <section className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
-          className="md:col-span-5 instrument-card p-8 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start">
-            <div className="p-2.5 rounded-md border border-[var(--line)] text-[var(--ink)]">
-              <Terminal size={20} />
-            </div>
-            <span className="mono-label text-[var(--ink-soft)]">READOUT // 01</span>
-          </div>
-
-          <div className="my-6">
-            <span className="mono-label text-[var(--signal)]">CURRENT FOCUS</span>
-            <h4 className="font-display text-2xl font-bold uppercase text-[var(--ink)] mt-1">
-              {heroData.focus}
-            </h4>
-          </div>
-
-          {/* INSTRUMENT PROGRESS BAR */}
-          <div className="space-y-2">
-            <div className="flex justify-between items-center font-mono text-xs">
-              <span className="text-[var(--ink-soft)]">PROGRESS LOG</span>
-              <span className="font-bold text-[var(--ink)]">{heroData.focusProgress}%</span>
-            </div>
-            <div className="h-1.5 w-full bg-[var(--line)] rounded-full overflow-hidden">
-              <motion.div 
-                initial={{ width: 0 }} 
-                whileInView={{ width: `${heroData.focusProgress}%` }} 
-                transition={{ duration: 1.2, ease: 'easeOut' }} 
-                className="h-full bg-[var(--ink)]" 
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="md:col-span-7 instrument-card p-8 flex flex-col justify-between bg-[var(--paper-raised)]"
-        >
-          <div className="flex justify-between items-start">
-            <div className="space-y-1">
-              <span className="tag-outline border-[var(--signal)] text-[var(--signal)] bg-[var(--signal-soft)]">
-                OPPORTUNITY SEEKING
-              </span>
-              <p className="mono-label text-[var(--ink-soft)] mt-2">STRATEGY 2026</p>
-            </div>
-            <ArrowUpRight size={24} className="text-[var(--ink-soft)]" />
-          </div>
-
-          <div className="my-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <h3 className="font-display text-3xl md:text-4xl font-extrabold uppercase text-[var(--ink)]">
-                {heroData.targetPosition}
-              </h3>
-              <p className="text-xs text-[var(--ink-soft)] mt-1">
-                Seeking entry-level Web Developer / Full Stack MERN role.
-              </p>
-            </div>
-
-            <div className="text-left md:text-right font-mono text-xs">
-              <span className="block text-[9px] uppercase tracking-widest text-[var(--ink-soft)]">LOCATION PREFERENCE</span>
-              <span className="font-bold uppercase text-[var(--ink)]">{heroData.targetLocation}</span>
-            </div>
-          </div>
-        </motion.div>
       </section>
     </div>
   )

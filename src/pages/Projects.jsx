@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, ArrowUpRight, X } from 'lucide-react'
 import { projectsData } from '../data/portfolioData'
+import TerminalWindow from '../components/TerminalWindow'
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(null)
@@ -16,97 +17,106 @@ const Projects = () => {
             Selected Projects
           </h1>
           <p className="text-sm font-medium text-[var(--ink-soft)] uppercase tracking-wider">
-            Deployment Log: 03 Major Web Systems Online. Focused on Full-Stack MERN and Next.js infrastructures.
+            Deployment Log: 03 Major Web Systems Online. Full-width two-panel split architectures with literal JSON specs.
           </p>
         </div>
       </section>
 
-      {/* PROJECT LIST (3 CARDS ONLY) */}
-      <div className="space-y-12">
-        {projectsData.map((project, idx) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="instrument-card overflow-hidden group"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              {/* PREVIEW SIDE */}
-              <div className="lg:col-span-6 relative bg-[var(--paper)] border-b lg:border-b-0 lg:border-r border-[var(--line)] min-h-[300px] overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" 
-                />
-                <div className="absolute top-4 left-4 bg-[var(--paper-raised)]/95 border border-[var(--line)] px-3 py-1 rounded-sm">
-                  <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[var(--ink)]">
-                    FIG 3.{idx + 1} // INTERFACE
-                  </span>
+      {/* FULL-WIDTH STACKED PROJECT ROWS (ZIG-ZAG DESKTOP RHYTHM) */}
+      <div className="space-y-20">
+        {projectsData.map((project, idx) => {
+          const slug = project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')
+          const terminalTitle = `${slug}.config`
+          const isReverse = idx % 2 !== 0 // Project 2 alternates direction on desktop
+
+          const terminalLines = [
+            { type: 'cmd', text: 'cat project.json' },
+            {
+              type: 'json',
+              text: JSON.stringify({
+                name: project.title,
+                category: project.category,
+                stack: project.tech,
+                description: project.description
+              }, null, 2)
+            }
+          ]
+
+          return (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="instrument-card overflow-hidden group flex flex-col justify-between"
+            >
+              {/* TWO-PANEL SPLIT (ZIG-ZAG DESKTOP, STACKED MOBILE) */}
+              <div className={`flex flex-col ${isReverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-stretch`}>
+                
+                {/* INTERFACE PREVIEW PANEL */}
+                <div className={`lg:w-1/2 relative bg-[var(--paper)] min-h-[340px] md:min-h-[400px] overflow-hidden border-b lg:border-b-0 ${
+                  isReverse ? 'lg:border-l border-[var(--line)]' : 'lg:border-r border-[var(--line)]'
+                }`}>
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" 
+                  />
+                  <div className="absolute top-4 left-4 bg-[var(--paper-raised)]/95 border border-[var(--line)] px-3 py-1 rounded-sm shadow-xs">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[var(--ink)]">
+                      FIG 3.{idx + 1} // INTERFACE
+                    </span>
+                  </div>
+                </div>
+
+                {/* TERMINAL PANEL */}
+                <div className="lg:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[var(--paper-raised)]">
+                  <TerminalWindow
+                    title={terminalTitle}
+                    variant="card"
+                    staggerDelay={idx * 0.15}
+                    lines={terminalLines}
+                    ariaLabel={`Project details for ${project.title}: Category ${project.category}, Stack: ${project.tech.join(', ')}`}
+                  />
                 </div>
               </div>
 
-              {/* CONTENT SIDE */}
-              <div className="lg:col-span-6 p-8 md:p-12 flex flex-col justify-between space-y-8">
-                <div>
-                  <div className="flex justify-between items-center pb-4 mb-6 border-b border-[var(--line)]">
-                    <span className="mono-label text-[var(--signal)]">{project.category}</span>
-                    <span className="mono-label text-[var(--ink-soft)]">PROJECT // 0{idx + 1}</span>
-                  </div>
-
-                  <h3 className="font-display text-3xl font-bold uppercase text-[var(--ink)] mb-4">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-sm text-[var(--ink-soft)] leading-relaxed mb-6">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {project.tech.map(t => (
-                      <span key={t} className="tag-outline">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex items-center gap-6">
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="signal-underline font-mono text-xs uppercase"
-                    >
-                      LAUNCH SYSTEM <ArrowUpRight size={14} />
-                    </a>
-
-                    {project.caseStudy && (
-                      <button 
-                        onClick={() => setActiveProject(project)}
-                        className="font-mono text-xs font-semibold text-[var(--ink-soft)] hover:text-[var(--ink)] uppercase transition-colors"
-                      >
-                        [ VIEW SPEC ]
-                      </button>
-                    )}
-                  </div>
-
+              {/* FULL-WIDTH ACTION FOOTER BAR */}
+              <div className="p-6 md:px-10 border-t border-[var(--line)] bg-[var(--paper-raised)] flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-6">
                   <a 
-                    href={project.github} 
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 border border-[var(--line)] rounded-md text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors"
-                    title="Source Repository"
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="signal-underline font-mono text-xs uppercase font-bold"
                   >
-                    <Github size={16} />
+                    LAUNCH SYSTEM <ArrowUpRight size={14} />
                   </a>
+
+                  {project.caseStudy && (
+                    <button 
+                      onClick={() => setActiveProject(project)}
+                      className="font-mono text-xs font-semibold text-[var(--ink-soft)] hover:text-[var(--ink)] uppercase transition-colors"
+                    >
+                      [ VIEW SPEC ]
+                    </button>
+                  )}
                 </div>
+
+                <a 
+                  href={project.github} 
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2.5 border border-[var(--line)] rounded-md text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors"
+                  title="Source Repository"
+                >
+                  <Github size={16} />
+                </a>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          )
+        })}
       </div>
 
       {/* CASE STUDY MODAL */}

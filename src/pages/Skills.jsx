@@ -1,15 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Layout, Terminal, Database, Cpu, Code2 } from 'lucide-react'
 import { skillsData } from '../data/portfolioData'
+import TerminalWindow from '../components/TerminalWindow'
 
-const categoryIcons = [
-  <Layout size={18} key="0" />,
-  <Terminal size={18} key="1" />,
-  <Database size={18} key="2" />,
-  <Code2 size={18} key="3" />,
-  <Cpu size={18} key="4" />
-]
+// Helper function to build 10-character ASCII block bars
+const generateAsciiBar = (percentage) => {
+  const totalBlocks = 10
+  const filledBlocks = Math.round((percentage / 100) * totalBlocks)
+  const emptyBlocks = totalBlocks - filledBlocks
+  return '█'.repeat(filledBlocks) + '░'.repeat(emptyBlocks)
+}
 
 const Skills = () => {
   return (
@@ -22,63 +22,56 @@ const Skills = () => {
             Competency Matrix
           </h1>
           <p className="text-sm font-medium text-[var(--ink-soft)] uppercase tracking-wider">
-            SY BCA Tech Stack across 5 specialized categories: Frontend, Backend, Database, Tools, and Logic Architecture.
+            SY BCA Tech Stack across 5 specialized CLI category modules.
           </p>
         </div>
       </section>
 
-      {/* SKILLS GRID (5 CATEGORIES) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {skillsData.map((category, idx) => (
-          <motion.div
-            key={category.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.08 }}
-            className="instrument-card p-8 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex justify-between items-center pb-6 mb-8 border-b border-[var(--line)]">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-md border border-[var(--line)] flex items-center justify-center text-[var(--ink)]">
-                    {categoryIcons[idx % categoryIcons.length]}
-                  </div>
-                  <span className="mono-label text-[var(--ink-soft)]">MODULE // 0{idx + 1}</span>
-                </div>
-              </div>
+      {/* SKILLS CLI TERMINALS GRID (5 CATEGORIES) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {skillsData.map((category, idx) => {
+          const categorySlug = category.title.toLowerCase().replace(/[^a-z0-9]/g, '-')
+          const terminalTitle = `skills --category=${categorySlug}`
 
-              <h3 className="font-display text-xl font-bold uppercase text-[var(--ink)] mb-8">
-                {category.title}
-              </h3>
-              
-              <div className="space-y-6">
-                {category.skills.map((skill, si) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between items-center font-mono text-xs">
-                      <span className="font-semibold text-[var(--ink)]">{skill.name}</span>
-                      <span className="text-[var(--ink-soft)]">{skill.level}%</span>
-                    </div>
-                    {/* THIN INSTRUMENT PROGRESS BAR */}
-                    <div className="h-1.5 w-full bg-[var(--line)] rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: si * 0.05 }}
-                        className="h-full bg-[var(--ink)]"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          // Build lines for terminal window
+          const lines = [
+            { type: 'cmd', text: `node skills.js --${categorySlug}` },
+            { type: 'muted', text: '' }
+          ]
 
-            <div className="pt-8 mt-8 border-t border-[var(--line)] text-right">
-              <span className="mono-label text-[var(--ink-soft)]">VERIFIED SPEC</span>
-            </div>
-          </motion.div>
-        ))}
+          category.skills.forEach(skill => {
+            const bar = generateAsciiBar(skill.level)
+            const paddedName = skill.name.padEnd(20, ' ')
+            lines.push({
+              type: 'text',
+              text: `${paddedName} ${bar}  ${skill.level}%`
+            })
+          })
+
+          lines.push({ type: 'muted', text: '' })
+          lines.push({ type: 'success', text: '✓ done in 0.4s' })
+
+          const ariaSummary = `${category.title} competencies: ` + category.skills.map(s => `${s.name} ${s.level}%`).join(', ')
+
+          return (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex flex-col"
+            >
+              <TerminalWindow
+                title={terminalTitle}
+                variant="data"
+                staggerDelay={idx * 0.1}
+                lines={lines}
+                ariaLabel={ariaSummary}
+              />
+            </motion.div>
+          )
+        })}
       </div>
     </div>
   )
