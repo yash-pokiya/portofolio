@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 
 // Components & Sections
+import IntroLoader from './components/IntroLoader'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -13,8 +15,18 @@ import Blog from './pages/Blog'
 import Contact from './pages/Contact'
 
 const App = () => {
+  const [isIntroActive, setIsIntroActive] = useState(() => {
+    return sessionStorage.getItem('hasSeenIntro') !== 'true'
+  })
+
   return (
     <Router>
+      <AnimatePresence mode="wait">
+        {isIntroActive && (
+          <IntroLoader key="intro-loader" onComplete={() => setIsIntroActive(false)} />
+        )}
+      </AnimatePresence>
+
       <Layout>
         <div className="flex flex-col">
           <section id="home" className="pb-16 md:pb-24">
