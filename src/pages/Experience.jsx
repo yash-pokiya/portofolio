@@ -5,7 +5,7 @@ import { experienceData, personalInfo } from '../data/portfolioData'
 
 const Experience = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16 md:space-y-20">
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
         <div className="space-y-4 max-w-2xl">
@@ -63,7 +63,7 @@ const Experience = () => {
 
                 <div className="pt-4 border-t border-[var(--line)] flex flex-wrap gap-2">
                   {entry.tech.map(t => (
-                    <span key={t} className="tag-outline">
+                    <span key={t} className="tag-notched">
                       {t}
                     </span>
                   ))}
@@ -103,14 +103,16 @@ const Experience = () => {
           </p>
         </div>
 
-        <a 
+        <motion.a 
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
           href={personalInfo.resumeUrl} 
           target="_blank" 
           rel="noreferrer"
-          className="signal-underline font-mono text-xs font-bold uppercase tracking-wider text-[var(--ink)] py-2"
+          className="group px-6 py-3 bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-[0.12em] rounded-[12px] hover:bg-[var(--signal)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all flex items-center gap-2"
         >
-          DOWNLOAD CV MANIFESTO <ArrowUpRight size={16} />
-        </a>
+          DOWNLOAD CV MANIFESTO <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+        </motion.a>
       </section>
     </div>
   )

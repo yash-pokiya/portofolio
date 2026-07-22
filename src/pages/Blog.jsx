@@ -8,7 +8,7 @@ const Blog = () => {
   const otherPosts = blogData.filter(p => !p.featured)
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16 md:space-y-20">
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
         <div className="space-y-4 max-w-2xl">
@@ -31,7 +31,7 @@ const Blog = () => {
           className="instrument-card p-8 md:p-12 space-y-8 group cursor-pointer hover:border-[var(--ink)]"
         >
           <div className="flex justify-between items-center pb-6 border-b border-[var(--line)]">
-            <span className="tag-outline border-[var(--signal)] text-[var(--signal)] bg-[var(--signal-soft)] font-bold">
+            <span className="tag-notched border-[var(--signal)] text-[var(--signal)] bg-[var(--signal-soft)] font-bold">
               FEATURED // {featuredPost.tag}
             </span>
             <div className="flex items-center gap-2 font-mono text-xs text-[var(--ink-soft)]">
@@ -50,8 +50,8 @@ const Blog = () => {
 
           <div className="pt-6 border-t border-[var(--line)] flex justify-between items-center">
             <span className="font-mono text-xs text-[var(--ink-soft)]">{featuredPost.date}</span>
-            <span className="signal-underline font-mono text-xs uppercase">
-              READ ANALYSIS <ArrowUpRight size={14} />
+            <span className="signal-underline font-mono text-xs uppercase flex items-center gap-1.5">
+              READ ANALYSIS <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
             </span>
           </div>
         </motion.div>

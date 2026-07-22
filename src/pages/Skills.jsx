@@ -13,7 +13,7 @@ const generateAsciiBar = (percentage) => {
 
 const Skills = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16 md:space-y-20">
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
         <div className="space-y-4 max-w-2xl">
@@ -41,7 +41,7 @@ const Skills = () => {
 
           category.skills.forEach(skill => {
             const bar = generateAsciiBar(skill.level)
-            const paddedName = skill.name.padEnd(20, ' ')
+            const paddedName = skill.name.padEnd(26, ' ')
             lines.push({
               type: 'text',
               text: `${paddedName} ${bar}  ${skill.level}%`

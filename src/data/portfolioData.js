@@ -1,12 +1,21 @@
+// Helper function to calculate duration dynamically from a start date
+export const getDuration = (startDateStr) => {
+  const start = new Date(startDateStr)
+  const now = new Date()
+  const diffMonths = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth()) + 1
+  const months = Math.max(1, diffMonths)
+  return `${months} mo${months > 1 ? 's' : ''}`
+}
+
 export const personalInfo = {
   name: "Yash Pokiya",
   wordmark: "YP.",
-  title: "Full Stack MERN Developer",
-  subtitle: "Full Stack MERN Developer from Surat, India | React, Node.js, Express, MongoDB",
+  title: "Full Stack MERN & Database Engineering Intern",
+  subtitle: "Full Stack MERN Developer from Surat, India | React, Node.js, Express, MongoDB, MySQL, PostgreSQL",
   email: "yashpokiya44@gmail.com",
   location: "Surat, Gujarat, India",
-  status: "OPEN",
-  statusLabel: "Open to Full-Time & Internship Opportunities",
+  status: "Intern at Settings Infotech",
+  statusLabel: "Intern at Settings Infotech",
   photoUrl: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777291481/WhatsApp_Image_2026-04-27_at_5.34.22_PM_rq7rwn.jpg",
   resumeUrl: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777291664/Yash_Pokiya_-_Resume_xu6swi.pdf",
   githubUrl: "https://github.com/yash-pokiya",
@@ -15,38 +24,38 @@ export const personalInfo = {
 }
 
 export const heroData = {
-  roleTag: "YASH POKIYA // FULL STACK MERN DEVELOPER",
+  roleTag: "YASH POKIYA // FULL STACK MERN & DATABASE INTERN",
   titleLine1: "TURNING CODE",
   titleLine2: "INTO EXPERIENCE.",
   statement: "I build digital products prioritizing performance, elegance, and logical integrity.",
   version: "v2.0 // SPEC SHEET",
   systemStatus: "ONLINE // ACTIVE",
-  focus: "MERN Stack Mastery",
+  focus: "MERN & Relational DBs",
   focusProgress: 85,
-  targetPosition: "Practical Web Engineering Internship 2026",
+  targetPosition: "Intern at Settings Infotech",
   targetLocation: "SURAT, IN // REMOTE",
   highlights: [
     { id: "01", title: "Logic Architecture" },
     { id: "02", title: "Full-Stack MERN" },
-    { id: "03", title: "System Optimization" },
-    { id: "04", title: "Cloud Deployment" }
+    { id: "03", title: "Relational DBs (MySQL/Postgres)" },
+    { id: "04", title: "System Optimization" }
   ]
 }
 
 export const aboutData = {
   headerTag: "§02 // IDENTITY SPEC",
   title: "About Yash Pokiya",
-  subTitle: "Yash Pokiya is a Full Stack MERN Developer based in Surat, Gujarat, India. Bridging practical client specs with structured logic.",
-  dossier: "I am Yash Pokiya, a motivated SY BCA student and Full Stack MERN Developer from Surat, India. I specialize in building responsive React applications, robust Node.js/Express APIs, and scalable MongoDB databases. Eager to contribute to production web development projects.",
+  subTitle: "Yash Pokiya is a Full Stack MERN & Database Intern based in Surat, Gujarat, India. Bridging practical client specs with structured logic.",
+  dossier: "I am Yash Pokiya, a motivated SY BCA student and MERN, MySQL & PostgreSQL Databases Intern at Settings Infotech in Surat, India. I specialize in building responsive React applications, robust Node.js/Express APIs, and scalable MongoDB, MySQL, and PostgreSQL database architectures.",
   traits: ["Quick Learner", "Team Player", "Logic Builder", "Problem Solver"],
-  currentFocus: "Backend Logic Systems",
-  currentFocusSub: "Node.js & Express.js",
-  focusDesc: "Strengthening API structures, REST principles, Node.js controllers, and database models.",
+  currentFocus: "Backend Logic & Database Architectures",
+  currentFocusSub: "Node.js, Express, MongoDB, MySQL & PostgreSQL",
+  focusDesc: "Strengthening API structures, REST principles, database models, and relational data querying.",
   metadata: [
     { label: "PHILOSOPHY", val: "Clean Architecture" },
     { label: "ROUTINE", val: "Continuous Logic" },
     { label: "DEPLOYMENT", val: "Surat // Global" },
-    { label: "STATUS", val: "Internship Active" }
+    { label: "STATUS", val: "Intern at Settings Infotech" }
   ]
 }
 
@@ -54,22 +63,22 @@ export const servicesData = [
   {
     id: "01",
     title: "Responsive Web Design",
-    description: "Building mobile-first, high-performance UI components using modern HTML5, CSS3, Tailwind CSS v4, and React 19."
+    description: "Building mobile-first, high-performance UI components using modern HTML5, CSS3, Tailwind CSS, Bootstrap 5, and React."
   },
   {
     id: "02",
     title: "Full-Stack Application Development",
-    description: "End-to-end MERN (MongoDB, Express.js, React.js, Node.js) and Next.js 14 Web Applications."
+    description: "End-to-end MERN (MongoDB, Express.js, React.js, Node.js) web applications with secure client-server architectures."
   },
   {
     id: "03",
-    title: "API Integration & Backend Architecture",
-    description: "Building secure REST APIs, authentication flows (JWT, RBAC), and database schemas."
+    title: "API Integration & Relational Databases",
+    description: "Building secure REST APIs, authentication flows (JWT, RBAC), and schemas in MongoDB, MySQL, and PostgreSQL."
   },
   {
     id: "04",
     title: "Website Optimization & Debugging",
-    description: "Performance tuning, code refactoring, logic troubleshooting, and browser compatibility."
+    description: "Performance tuning, code refactoring, logic troubleshooting, and cross-browser compatibility."
   }
 ]
 
@@ -82,12 +91,12 @@ export const projectsData = [
     link: "https://nestlyliving.vercel.app/",
     github: "https://github.com/yash-pokiya",
     image: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777294104/Screenshot_2026-04-27_181734_lqfk3t.png",
-    imageAlt: "NestlyLiving Real Estate Platform by Yash Pokiya - Full Stack MERN Developer using Next.js 14 and MongoDB",
-    tech: ["Next.js 14", "Tailwind CSS", "MongoDB"],
+    imageAlt: "NestlyLiving Real Estate Platform by Yash Pokiya - Full Stack MERN Developer using React, Node.js, Express, and MongoDB",
+    tech: ["React", "Node.js", "Express.js", "MongoDB"],
     caseStudy: {
-      challenge: "Managing complex filtering for thousands of properties without performance lag.",
-      logic: "Next.js 14 Server Components with Prisma for optimized database queries.",
-      results: "Sub-500ms search results and 100% mobile responsiveness."
+      challenge: "Managing complex property filtering and search operations efficiently.",
+      logic: "Optimized MERN architecture with MongoDB indexed queries and Express controllers.",
+      results: "Sub-500ms search query response and 100% mobile responsiveness."
     }
   },
   {
@@ -108,18 +117,18 @@ export const projectsData = [
   },
   {
     id: "03",
-    title: "System E-commerce",
-    category: "MERN FRAMEWORK BASELINE",
-    description: "A logic-driven e-commerce baseline demonstrating core MERN functionalities, cart management, and order flow.",
-    link: "https://ecommerce-mern-two-xi.vercel.app/",
+    title: "CYPHER",
+    category: "ZERO-KNOWLEDGE PHOTO STORAGE",
+    description: "A privacy-first encrypted photo vault where images are encrypted client-side before upload — the server only ever stores ciphertext, never plaintext photos or passwords.",
+    link: "#",
     github: "https://github.com/yash-pokiya",
-    image: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1777294226/Screenshot_2026-04-27_182006_gdlkss.png",
-    imageAlt: "System E-commerce MERN Framework by Yash Pokiya - Full Stack Developer using Express and JWT Auth",
-    tech: ["MongoDB", "Express", "React", "Node.js"],
+    image: "https://res.cloudinary.com/dsncsvgfm/image/upload/v1784731266/Screenshot_2026-07-22_200949_pqzibn.png",
+    imageAlt: "CYPHER Zero-Knowledge Encrypted Photo Vault by Yash Pokiya",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Cloudinary"],
     caseStudy: {
-      challenge: "Building a secure admin dashboard to manage inventory and user permissions.",
-      logic: "JWT-based authentication with role-based access control (RBAC) in Node.js.",
-      results: "Zero unauthorized access incidents and streamlined order management."
+      challenge: "Preventing server-side access or data leaks for sensitive personal media.",
+      logic: "Client-side AES-256-GCM encryption with per-file unique 256-bit keys derived via PBKDF2 (310,000 iterations, SHA-256). Cloudinary stores ciphertext blobs while MongoDB stores wrapped keys; master key exists only in browser memory.",
+      results: "Zero-knowledge security architecture ensuring total client-side privacy."
     }
   }
 ]
@@ -132,14 +141,15 @@ export const skillsData = [
       { name: "JavaScript (ES6+)", level: 85 },
       { name: "Tailwind CSS", level: 90 },
       { name: "Bootstrap 5", level: 90 },
-      { name: "React.js", level: 80 }
+      { name: "React.js", level: 80 },
+      { name: "Redux Toolkit", level: 80 }
     ]
   },
   {
     title: "Backend Engineering",
     skills: [
-      { name: "Node.js (Next.js)", level: 75 },
-      { name: "Express.js", level: 70 },
+      { name: "Node.js", level: 75 },
+      { name: "Express.js", level: 75 },
       { name: "RESTful APIs", level: 82 }
     ]
   },
@@ -147,7 +157,9 @@ export const skillsData = [
     title: "Database Systems",
     skills: [
       { name: "MongoDB", level: 80 },
-      { name: "MongoDB Compass", level: 85 }
+      { name: "MongoDB Compass", level: 85 },
+      { name: "MySQL", level: 75 },
+      { name: "PostgreSQL [YASH: confirm %]", level: 70 }
     ]
   },
   {
@@ -172,27 +184,27 @@ export const experienceData = {
   entries: [
     {
       id: "01",
-      role: "Web Developer / Full Stack Engineer",
+      role: "MERN, MySQL & PostgreSQL Databases Intern",
       company: "Settings Infotech",
       location: "Surat, Gujarat, India",
-      period: "PRESENT // ONGOING",
-      status: "CURRENT DEPLOYMENT",
-      description: "Developing responsive user interfaces, implementing robust client-side routing, and collaborating on production Web applications.",
-      tech: ["React.js", "JavaScript", "Tailwind CSS", "REST APIs"]
+      period: `June 2026 — Present · ${getDuration("2026-06-01")}`,
+      status: "CURRENT INTERNSHIP",
+      description: "Developing scalable MERN applications, creating REST APIs with JWT authentication, building reusable React components, and working with MySQL and PostgreSQL alongside MongoDB for relational and non-relational database needs.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MySQL", "PostgreSQL", "REST APIs"]
     },
     {
       id: "02",
       role: "MERN Stack Intern",
       company: "LaMinds",
       location: "Surat, Gujarat, India (Sumul Dairy Rd)",
-      period: "3 MONTHS INTERNSHIP",
-      status: "COMPLETED DEPLOYMENT",
+      period: "January 2026 — May 2026",
+      status: "COMPLETED INTERNSHIP",
       description: "Contributed to full-stack web application development using the MERN ecosystem. Developed responsive interfaces, integrated API endpoints, and optimized client logic for business applications.",
       tech: ["MongoDB", "Express", "React", "Node.js"]
     }
   ],
   goals: [
-    { label: "GOAL 01", text: "Master Next.js 14 Architectures" },
+    { label: "GOAL 01", text: "Master Relational & NoSQL Systems" },
     { label: "GOAL 02", text: "Deploy Production REST APIs" },
     { label: "GOAL 03", text: "Optimize Client Performance" }
   ]
@@ -207,7 +219,7 @@ export const educationData = {
   timeline: "2024 — ONGOING (SY)",
   semester: "SEMESTER IV // SY",
   curriculum: [
-    { title: "Database Architectures", desc: "SQL & NoSQL Systems" },
+    { title: "Database Architectures", desc: "SQL (MySQL/Postgres) & NoSQL (MongoDB)" },
     { title: "Full-Stack Logic", desc: "MERN Frameworks" },
     { title: "Web Technologies", desc: "System Design Principles" },
     { title: "Business Applications", desc: "Enterprise Client Specs" }
@@ -215,7 +227,7 @@ export const educationData = {
   metadata: [
     { label: "CURRENT SEMESTER", val: "SEMESTER IV // SY" },
     { label: "CORE CONCENTRATION", val: "Software & Web Systems" },
-    { label: "LOGIC SPECIALIZATION", val: "MERN / JavaScript" }
+    { label: "LOGIC SPECIALIZATION", val: "MERN / Relational DBs" }
   ]
 }
 
@@ -246,28 +258,5 @@ export const blogData = [
     readTime: "4 MIN READ",
     tag: "GROWTH",
     featured: false
-  }
-]
-
-export const faqData = [
-  {
-    question: "Who is Yash Pokiya?",
-    answer: "Yash Pokiya is a Full Stack MERN Developer and BCA student based in Surat, Gujarat, India. He specializes in building modern web applications using React, Node.js, Express, MongoDB, and Tailwind CSS."
-  },
-  {
-    question: "What primary skills and technologies does Yash Pokiya know?",
-    answer: "Yash Pokiya's core tech stack includes HTML5, CSS3, JavaScript (ES6+), React.js, Redux Toolkit, Node.js, Express.js, MongoDB, RESTful APIs, JWT Authentication, C Language, Tailwind CSS, Bootstrap, Git, and GitHub."
-  },
-  {
-    question: "What is Yash Pokiya's work experience?",
-    answer: "Yash Pokiya works as a Web Developer / Full Stack Engineer at Settings Infotech in Surat, India. Previously, he completed a 3-month MERN Stack Internship at LaMinds."
-  },
-  {
-    question: "What are Yash Pokiya's major projects?",
-    answer: "Yash Pokiya's major projects include NestlyLiving (Real Estate Ecosystem built with Next.js 14 & MongoDB), Caratior (Luxury Jewellery E-commerce with multi-currency sync), and System E-commerce (MERN Framework baseline with JWT authentication)."
-  },
-  {
-    question: "Is Yash Pokiya available for hire or internships?",
-    answer: "Yes, Yash Pokiya is actively open for Full-Time Developer opportunities and Web Engineering Internships in Surat, Gujarat, India as well as Remote positions."
   }
 ]

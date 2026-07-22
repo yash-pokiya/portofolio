@@ -1,11 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github, HelpCircle } from 'lucide-react'
-import { aboutData, personalInfo, servicesData, faqData } from '../data/portfolioData'
+import { User, MapPin, Code2, Brain, Terminal, Coffee, Globe, Award, Linkedin, Github } from 'lucide-react'
+import { aboutData, personalInfo, servicesData } from '../data/portfolioData'
 
 const About = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16 md:space-y-20">
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
         <div className="space-y-4 max-w-2xl">
@@ -23,7 +23,7 @@ const About = () => {
             href={personalInfo.linkedinUrl} 
             target="_blank" 
             rel="noreferrer" 
-            className="tag-outline flex items-center gap-2"
+            className="tag-notched flex items-center gap-2"
           >
             <Linkedin size={13} /> LINKEDIN
           </a>
@@ -31,7 +31,7 @@ const About = () => {
             href={personalInfo.githubUrl} 
             target="_blank" 
             rel="noreferrer" 
-            className="tag-outline flex items-center gap-2"
+            className="tag-notched flex items-center gap-2"
           >
             <Github size={13} /> GITHUB
           </a>
@@ -68,7 +68,7 @@ const About = () => {
 
           <div className="pt-4 border-t border-[var(--line)] flex flex-wrap gap-2">
             {aboutData.traits.map(tag => (
-              <span key={tag} className="tag-outline">
+              <span key={tag} className="tag-notched">
                 {tag}
               </span>
             ))}
@@ -131,45 +131,32 @@ const About = () => {
         </div>
       </section>
 
-      {/* AI SEARCH & FAQ SECTION */}
-      <section className="instrument-card p-8 md:p-12 space-y-8" aria-label="Frequently Asked Questions about Yash Pokiya">
-        <div className="flex justify-between items-center pb-6 border-b border-[var(--line)]">
-          <div className="space-y-1">
-            <span className="mono-label text-[var(--signal)]">AI SEARCH OPTIMIZATION & ENTITY FAQ</span>
-            <h3 className="font-display text-2xl font-bold uppercase text-[var(--ink)] flex items-center gap-2">
-              <HelpCircle size={20} className="text-[var(--signal)]" /> Frequently Asked Questions
-            </h3>
-          </div>
-          <span className="mono-label text-[var(--ink-soft)]">YASH POKIYA ENTITY SPEC</span>
-        </div>
-
-        <div className="space-y-6 divide-y divide-[var(--line)]">
-          {faqData.map((faq, idx) => (
-            <div key={idx} className={`${idx > 0 ? 'pt-6' : ''} space-y-2`}>
-              <h4 className="font-display text-lg font-bold text-[var(--ink)] uppercase">
-                {faq.question}
-              </h4>
-              <p className="font-mono text-xs text-[var(--ink-soft)] leading-relaxed max-w-4xl">
-                {faq.answer}
-              </p>
+      {/* METADATA STRIP (4-STAT CARDS REDESIGN) */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {aboutData.metadata.map((item, i) => {
+          const isStatus = item.label === 'STATUS'
+          return (
+            <div 
+              key={i} 
+              className="instrument-card p-6 flex flex-col justify-between space-y-4 group bg-[var(--paper-raised)] border border-[var(--line)] rounded-[12px] shadow-none hover:border-[var(--ink)] transition-colors"
+            >
+              <div className="flex items-center justify-between w-full">
+                <div className={`w-10 h-10 rounded-md border border-[var(--line)] flex items-center justify-center transition-colors ${
+                  isStatus ? 'text-[var(--signal)] border-[var(--signal)]/40' : 'text-[var(--ink)] group-hover:border-[var(--signal)] group-hover:text-[var(--signal)]'
+                }`}>
+                  {i === 0 ? <Code2 size={18} /> : i === 1 ? <Coffee size={18} /> : i === 2 ? <Globe size={18} /> : <Award size={18} />}
+                </div>
+                {isStatus && (
+                  <span className="w-2 h-2 rounded-full bg-[var(--signal)] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
+                )}
+              </div>
+              <div>
+                <span className="mono-label text-[var(--ink-soft)] block">{item.label}</span>
+                <p className="font-display text-sm md:text-base font-bold uppercase text-[var(--ink)] mt-1 leading-snug">{item.val}</p>
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* METADATA STRIP */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {aboutData.metadata.map((item, i) => (
-          <div key={i} className="instrument-card p-6 flex flex-col items-start space-y-3">
-            <div className="text-[var(--signal)]">
-              {i === 0 ? <Code2 size={18} /> : i === 1 ? <Coffee size={18} /> : i === 2 ? <Globe size={18} /> : <Award size={18} />}
-            </div>
-            <div>
-              <span className="mono-label text-[var(--ink-soft)] block">{item.label}</span>
-              <p className="font-display text-sm font-bold uppercase text-[var(--ink)] mt-0.5">{item.val}</p>
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </section>
     </div>
   )

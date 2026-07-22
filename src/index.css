@@ -20,8 +20,8 @@
     --ink: #101012;
     --ink-soft: #55565C;
     --line: #DDDCD6;
-    --signal: #FF4405;
-    --signal-soft: #FFE9E2;
+    --signal: #2B5CFF;
+    --signal-soft: #E8EDFF;
 
     /* Terminal Window Tokens */
     --term-bg: #0D0D0F;
@@ -29,7 +29,7 @@
     --term-text: #E4E4E7;
     --term-muted: #85858C;
     --term-success: #3ECF8E;
-    --term-prompt: #FF4405;
+    --term-prompt: #5C82FF;
   }
 
   body {
@@ -85,7 +85,31 @@
     color: var(--ink);
   }
 
-  /* Outline Tag Chips */
+  /* Notched-Corner Tag Chips (Top-Left Diagonal Cut) */
+  .tag-notched {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--line);
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+    color: var(--ink-soft);
+    background: transparent;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .tag-notched:hover {
+    border-color: var(--signal);
+    background-color: var(--signal-soft);
+    color: var(--ink);
+  }
+
+  /* Deprecated tag-outline mapping to tag-notched */
   .tag-outline {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -94,10 +118,13 @@
     letter-spacing: 0.08em;
     padding: 0.25rem 0.625rem;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
     color: var(--ink-soft);
     background: transparent;
-    transition: all 0.15s ease;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
   }
 
   .tag-outline:hover {
@@ -106,7 +133,35 @@
     color: var(--ink);
   }
 
-  /* Signal Link Underline Hover */
+  /* Tactile Primary Button System */
+  .btn-primary {
+    background-color: var(--ink);
+    color: var(--paper-raised);
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 150ms ease, box-shadow 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--signal);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* Signal Link Underline Hover with Letter-Spacing Tension */
   .signal-underline {
     position: relative;
     display: inline-flex;
@@ -114,7 +169,7 @@
     gap: 0.375rem;
     font-weight: 600;
     color: var(--ink);
-    transition: color 0.15s ease;
+    transition: color 0.15s ease, letter-spacing 0.15s ease;
   }
 
   .signal-underline::after {
@@ -126,6 +181,10 @@
     height: 1.5px;
     background-color: var(--signal);
     transition: width 0.2s ease-in-out;
+  }
+
+  .signal-underline:hover {
+    letter-spacing: -0.01em;
   }
 
   .signal-underline:hover::after {

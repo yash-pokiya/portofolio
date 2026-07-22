@@ -17,28 +17,28 @@ const App = () => {
     <Router>
       <Layout>
         <div className="flex flex-col">
-          <section id="home" className="min-h-screen">
+          <section id="home" className="pb-16 md:pb-24">
             <Home />
           </section>
-          <section id="about" className="min-h-screen py-20">
+          <section id="about" className="py-16 md:py-24">
             <About />
           </section>
-          <section id="projects" className="min-h-screen py-20">
+          <section id="projects" className="py-16 md:py-24">
             <Projects />
           </section>
-          <section id="skills" className="min-h-screen py-20">
+          <section id="skills" className="py-16 md:py-24">
             <Skills />
           </section>
-          <section id="experience" className="min-h-screen py-20">
+          <section id="experience" className="py-16 md:py-24">
             <Experience />
           </section>
-          <section id="education" className="min-h-screen py-20">
+          <section id="education" className="py-16 md:py-24">
             <Education />
           </section>
-          <section id="blog" className="min-h-screen py-20">
+          <section id="blog" className="py-16 md:py-24">
             <Blog />
           </section>
-          <section id="contact" className="min-h-screen py-20">
+          <section id="contact" className="py-16 md:py-24">
             <Contact />
           </section>
         </div>

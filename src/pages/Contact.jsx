@@ -39,7 +39,7 @@ const Contact = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16 md:space-y-20">
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
         <div className="space-y-4 max-w-2xl">
@@ -86,7 +86,7 @@ const Contact = () => {
                   </span>
                   <button 
                     onClick={handleCopyEmail}
-                    className="px-3 py-1.5 rounded-sm border border-[var(--line)] text-xs font-mono font-bold uppercase text-[var(--ink)] hover:border-[var(--signal)] hover:text-[var(--signal)] transition-colors flex items-center gap-1.5 shrink-0"
+                    className="tag-notched text-xs font-mono font-bold uppercase text-[var(--ink)] hover:border-[var(--signal)] hover:text-[var(--signal)] transition-colors flex items-center gap-1.5 shrink-0"
                   >
                     {copied ? <><Check size={12} /> COPIED</> : <><Copy size={12} /> COPY</>}
                   </button>
@@ -109,28 +109,28 @@ const Contact = () => {
                     href={personalInfo.githubUrl} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="p-3 rounded-md border border-[var(--line)] flex items-center justify-between font-mono text-xs font-bold uppercase text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--paper)] transition-colors"
+                    className="group p-3 rounded-md border border-[var(--line)] flex items-center justify-between font-mono text-xs font-bold uppercase text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--paper)] transition-colors"
                   >
                     <span className="flex items-center gap-2"><Github size={15} /> GITHUB</span>
-                    <ArrowUpRight size={14} className="text-[var(--ink-soft)]" />
+                    <ArrowUpRight size={14} className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
                   </a>
                   <a 
                     href={personalInfo.linkedinUrl} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="p-3 rounded-md border border-[var(--line)] flex items-center justify-between font-mono text-xs font-bold uppercase text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--paper)] transition-colors"
+                    className="group p-3 rounded-md border border-[var(--line)] flex items-center justify-between font-mono text-xs font-bold uppercase text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--paper)] transition-colors"
                   >
                     <span className="flex items-center gap-2"><Linkedin size={15} /> LINKEDIN</span>
-                    <ArrowUpRight size={14} className="text-[var(--ink-soft)]" />
+                    <ArrowUpRight size={14} className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
                   </a>
                   <a 
                     href={personalInfo.resumeUrl} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="p-3 rounded-md border border-[var(--line)] flex items-center justify-between font-mono text-xs font-bold uppercase text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--paper)] transition-colors"
+                    className="group p-3 rounded-md border border-[var(--line)] flex items-center justify-between font-mono text-xs font-bold uppercase text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--paper)] transition-colors"
                   >
                     <span>RESUME // CV PDF</span>
-                    <ArrowUpRight size={14} className="text-[var(--ink-soft)]" />
+                    <ArrowUpRight size={14} className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
                   </a>
                 </div>
               </div>
@@ -190,15 +190,17 @@ const Contact = () => {
             </div>
 
             {/* SUBMIT BUTTON */}
-            <button 
+            <motion.button 
               type="submit" 
               disabled={status === "sending" || status === "success"}
-              className={`w-full py-4 rounded-md font-mono text-xs font-bold uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-2 ${
+              whileTap={status === "idle" ? { scale: 0.97 } : {}}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className={`group w-full py-4 rounded-[12px] font-mono text-xs font-bold uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-2 ${
                 status === "success" 
-                  ? "bg-[var(--signal-soft)] text-[var(--ink)] border border-[var(--signal)]"
+                  ? "bg-[var(--signal-soft)] text-[var(--ink)] border border-[var(--signal)] cursor-default"
                   : status === "sending"
-                  ? "bg-[var(--ink-soft)] text-[var(--paper-raised)] cursor-not-allowed"
-                  : "bg-[var(--ink)] text-[var(--paper-raised)] hover:bg-[var(--signal)]"
+                  ? "bg-[var(--ink)]/40 text-[var(--paper-raised)] cursor-not-allowed opacity-40"
+                  : "bg-[var(--ink)] text-[var(--paper-raised)] hover:bg-[var(--signal)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
               }`}
             >
               {status === "sending" ? (
@@ -206,9 +208,9 @@ const Contact = () => {
               ) : status === "success" ? (
                 <><Check size={16} className="text-[var(--signal)]" /> MESSAGE SENT — 200 OK</>
               ) : (
-                <><Send size={16} /> INITIALIZE TRANSMISSION</>
+                <><Send size={16} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" /> INITIALIZE TRANSMISSION</>
               )}
-            </button>
+            </motion.button>
 
             <AnimatePresence>
               {status === "error" && (

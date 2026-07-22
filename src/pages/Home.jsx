@@ -6,17 +6,17 @@ import TerminalWindow from '../components/TerminalWindow'
 
 const heroTerminalLines = [
   { type: 'cmd', text: 'whoami' },
-  { type: 'text', text: `${personalInfo.name.toLowerCase().replace(/\s+/g, '-')} — full stack mern developer` },
+  { type: 'text', text: `${personalInfo.name.toLowerCase().replace(/\s+/g, '-')} — mern & database intern` },
   { type: 'cmd', text: 'cat status.json' },
   { 
     type: 'json', 
-    text: `{\n  "name": "${personalInfo.name}",\n  "role": "Full Stack MERN Developer",\n  "location": "${personalInfo.location}",\n  "availability": "✓ ${personalInfo.statusLabel}",\n  "focus": ["React", "Node.js", "Express", "MongoDB", "REST APIs"]\n}` 
+    text: `{\n  "name": "${personalInfo.name}",\n  "role": "${personalInfo.title}",\n  "location": "${personalInfo.location}",\n  "status": "✓ ${personalInfo.statusLabel}",\n  "focus": ["React", "Node.js", "Express", "MongoDB", "MySQL", "PostgreSQL"]\n}` 
   }
 ]
 
 const Home = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24 pb-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-20 pb-20">
       {/* HERO SECTION */}
       <section className="space-y-12">
         <div className="space-y-4 max-w-4xl pt-8">
@@ -26,7 +26,7 @@ const Home = () => {
             className="flex items-center gap-2 text-[var(--signal)] font-mono text-xs font-semibold uppercase tracking-[0.15em]"
           >
             <span className="w-2 h-2 rounded-full bg-[var(--signal)]" />
-            {personalInfo.name} // FULL STACK MERN DEVELOPER
+            {personalInfo.name} // MERN & DATABASE INTERN
           </motion.div>
 
           <motion.h1 
@@ -37,7 +37,7 @@ const Home = () => {
           >
             Yash Pokiya <br />
             <span className="italic font-normal text-3xl md:text-6xl block mt-2 text-[var(--ink-soft)]">
-              Full Stack MERN Developer
+              Full Stack MERN & Database Intern
             </span>
           </motion.h1>
         </div>
@@ -60,12 +60,14 @@ const Home = () => {
             />
 
             <div className="pt-6 border-t border-[var(--line)] mt-6 flex flex-wrap items-center justify-between gap-6">
-              <a 
+              <motion.a 
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="#projects" 
-                className="px-6 py-3 bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-[0.12em] rounded-md hover:bg-[var(--signal)] transition-colors flex items-center gap-2"
+                className="group px-6 py-3 bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-[0.12em] rounded-[12px] hover:bg-[var(--signal)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all flex items-center gap-2"
               >
-                EXPLORE PROJECTS <ArrowUpRight size={14} />
-              </a>
+                EXPLORE PROJECTS <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+              </motion.a>
 
               <div className="flex items-center gap-6 font-mono text-xs text-[var(--ink-soft)]">
                 <div>
@@ -75,7 +77,7 @@ const Home = () => {
                 <div className="h-6 w-[1px] bg-[var(--line)]" />
                 <div>
                   <span className="block text-[9px] uppercase tracking-widest opacity-60">AVAILABILITY</span>
-                  <span className="font-bold text-[var(--signal)]">{personalInfo.status} 2026</span>
+                  <span className="font-bold text-[var(--signal)]">{personalInfo.status}</span>
                 </div>
               </div>
             </div>

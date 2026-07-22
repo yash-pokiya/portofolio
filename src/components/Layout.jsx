@@ -32,16 +32,15 @@ const Layout = ({ children }) => {
 
       {/* FIXED TOP NAVBAR */}
       <header
-        className={`fixed top-0 left-0 right-0 z-[100] bg-[var(--paper)] border-b border-[var(--line)] transition-all duration-200 ${
-          scrolledPastHeader ? 'py-3' : 'py-5'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-[100] bg-[var(--paper)] border-b border-[var(--line)] transition-all duration-200 ${scrolledPastHeader ? 'py-3' : 'py-5'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          
+
           {/* LEFT: YP. WORDMARK */}
           <div className="flex items-center gap-3">
-            <button 
-              onClick={() => handleNavClick('home')} 
+            <button
+              onClick={() => handleNavClick('home')}
               className="font-display font-black text-2xl tracking-tighter text-[var(--ink)] hover:opacity-80 transition-opacity"
             >
               YP<span className="text-[var(--signal)]">.</span>
@@ -54,24 +53,26 @@ const Layout = ({ children }) => {
             </div>
           </div>
 
-          {/* CENTER-RIGHT: DESKTOP NAV LINKS (>=1024px) */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* CENTER-RIGHT: DESKTOP COMMAND BAR NAV (>=1024px) */}
+          <nav className="hidden lg:flex items-center gap-1.5 font-mono text-xs select-none">
+            <span className="text-[var(--ink-soft)] opacity-70 mr-1 font-semibold">~/yash $ goto</span>
             {navItems.map((item) => {
               const isActive = activeSection === item.path
               return (
                 <button
                   key={item.path}
                   onClick={() => handleNavClick(item.path)}
-                  className={`relative font-mono text-[0.75rem] font-medium uppercase tracking-[0.12em] transition-colors py-1 ${
-                    isActive ? 'text-[var(--signal)] font-bold' : 'text-[var(--ink-soft)] hover:text-[var(--ink)]'
-                  }`}
+                  className={`inline-flex items-center transition-colors px-1 py-0.5 rounded-sm ${isActive
+                      ? 'text-[var(--signal)] font-bold'
+                      : 'text-[var(--ink-soft)] hover:text-[var(--ink)] font-semibold'
+                    }`}
                 >
-                  {item.name}
+                  <span>[{item.name.toLowerCase()}]</span>
                   {isActive && (
-                    <motion.div
-                      layoutId="active-nav"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[var(--signal)]"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    <motion.span
+                      layoutId="active-cursor"
+                      className="inline-block w-2 h-3.5 bg-[var(--signal)] ml-1 animate-pulse align-middle"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
                 </button>
@@ -82,7 +83,7 @@ const Layout = ({ children }) => {
           {/* FAR RIGHT: AVAILABILITY PILL & CONTACT CTA */}
           <div className="hidden lg:flex items-center gap-5">
             {/* AVAILABILITY PILL */}
-            <div 
+            <div
               className="flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--line)] bg-[var(--paper-raised)]"
               title={personalInfo.statusLabel}
             >
@@ -93,21 +94,24 @@ const Layout = ({ children }) => {
             </div>
 
             {/* CONTACT CTA BUTTON */}
-            <button
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               onClick={() => handleNavClick('contact')}
-              className="px-5 py-2 rounded-full bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-[11px] font-bold uppercase tracking-wider hover:bg-[var(--signal)] transition-colors flex items-center gap-1.5 shadow-xs"
+              className="group px-5 py-2 rounded-[12px] bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-[11px] font-bold uppercase tracking-wider hover:bg-[var(--signal)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all flex items-center gap-1.5 shadow-xs"
             >
-              Contact <ArrowUpRight size={14} />
-            </button>
+              Contact <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+            </motion.button>
           </div>
 
-          {/* MOBILE MENU TRIGGER (<1024px) */}
+          {/* MOBILE COMMAND MENU TRIGGER (<1024px) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-[var(--ink)] hover:text-[var(--signal)] transition-colors p-1"
+            className="lg:hidden font-mono text-xs font-bold text-[var(--ink)] hover:text-[var(--signal)] transition-colors px-2.5 py-1 border border-[var(--line)] rounded-md flex items-center gap-1.5 bg-[var(--paper-raised)]"
             aria-label="Toggle Navigation Menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <span>~/yash $ menu</span>
+            <span className="inline-block w-1.5 h-3 bg-[var(--signal)] animate-pulse" />
           </button>
         </div>
       </header>
@@ -142,10 +146,10 @@ const Layout = ({ children }) => {
               <div>
                 {/* DRAWER HEADER */}
                 <div className="flex justify-between items-center pb-5 mb-4 border-b border-[var(--line)]">
-                  <span className="font-display font-black text-xl text-[var(--ink)]">
-                    YP<span className="text-[var(--signal)]">.</span> INDEX
+                  <span className="font-mono font-bold text-sm text-[var(--ink)]">
+                    ~/yash $ goto <span className="text-[var(--signal)]">index</span>
                   </span>
-                  <button 
+                  <button
                     onClick={() => setIsMenuOpen(false)}
                     className="p-1 text-[var(--ink)] hover:text-[var(--signal)]"
                   >
@@ -153,25 +157,28 @@ const Layout = ({ children }) => {
                   </button>
                 </div>
 
-                {/* NAV LINKS STACK */}
-                <nav className="space-y-0 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+                {/* NAV LINKS STACK (COMMAND LIST STYLE) */}
+                <nav className="space-y-1 divide-y divide-[var(--line)] border-y border-[var(--line)] py-2">
                   {navItems.map((item) => {
                     const isActive = activeSection === item.path
                     return (
                       <button
                         key={item.path}
                         onClick={() => handleNavClick(item.path)}
-                        className={`w-full text-left py-3.5 px-2 flex items-center justify-between transition-colors ${
-                          isActive 
-                            ? 'text-[var(--signal)] font-bold' 
+                        className={`w-full text-left py-3 px-2 flex items-center justify-between font-mono text-xs uppercase tracking-wider transition-colors rounded-sm ${isActive
+                            ? 'text-[var(--signal)] font-bold bg-[var(--signal-soft)]/40'
                             : 'text-[var(--ink)] hover:text-[var(--signal)]'
-                        }`}
+                          }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="font-mono text-xs text-[var(--ink-soft)]">{item.code}</span>
-                          <span className="font-mono text-xs uppercase tracking-wider font-semibold">{item.name}</span>
+                        <div className="flex items-center gap-2">
+                          <span className={isActive ? 'text-[var(--signal)] font-bold' : 'text-[var(--ink-soft)]'}>&gt;</span>
+                          <span>{item.name.toLowerCase()}</span>
                         </div>
-                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[var(--signal)]" />}
+                        {isActive ? (
+                          <span className="inline-block w-2 h-3.5 bg-[var(--signal)] animate-pulse" />
+                        ) : (
+                          <span className="font-mono text-[10px] text-[var(--ink-soft)]">{item.code}</span>
+                        )}
                       </button>
                     )
                   })}
@@ -183,19 +190,21 @@ const Layout = ({ children }) => {
                 <div className="flex items-center justify-between px-3 py-2 rounded-md border border-[var(--line)] bg-[var(--paper)]">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[var(--signal)] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
-                    <span className="font-mono text-xs font-bold text-[var(--ink)] uppercase">
+                    <span className="font-mono text-[10px] font-bold text-[var(--ink)] uppercase truncate max-w-[200px]">
                       {personalInfo.status}
                     </span>
                   </div>
-                  <span className="font-mono text-[9px] text-[var(--ink-soft)]">2026</span>
+                  <span className="font-mono text-[9px] text-[var(--ink-soft)] shrink-0">2026</span>
                 </div>
 
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   onClick={() => handleNavClick('contact')}
-                  className="w-full py-3 rounded-full bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-wider hover:bg-[var(--signal)] transition-colors flex items-center justify-center gap-2"
+                  className="group w-full py-3 rounded-[12px] bg-[var(--ink)] text-[var(--paper-raised)] font-mono text-xs font-bold uppercase tracking-wider hover:bg-[var(--signal)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all flex items-center justify-center gap-2"
                 >
-                  Contact <ArrowUpRight size={16} />
-                </button>
+                  Contact <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+                </motion.button>
               </div>
             </motion.aside>
           </>

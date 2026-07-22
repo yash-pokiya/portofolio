@@ -8,7 +8,7 @@ const Projects = () => {
   const [activeProject, setActiveProject] = useState(null)
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16 md:space-y-20">
       {/* HEADER */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-[var(--line)]">
         <div className="space-y-4 max-w-2xl">
@@ -17,7 +17,7 @@ const Projects = () => {
             Projects | Yash Pokiya
           </h1>
           <p className="text-sm font-medium text-[var(--ink-soft)] uppercase tracking-wider">
-            Featured Full Stack MERN and Next.js projects engineered by Yash Pokiya from Surat, India.
+            Featured Full Stack MERN and Database projects engineered by Yash Pokiya from Surat, India.
           </p>
         </div>
       </section>
@@ -86,19 +86,25 @@ const Projects = () => {
               {/* FULL-WIDTH ACTION FOOTER BAR */}
               <div className="p-6 md:px-10 border-t border-[var(--line)] bg-[var(--paper-raised)] flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-6">
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="signal-underline font-mono text-xs uppercase font-bold"
-                  >
-                    LAUNCH SYSTEM <ArrowUpRight size={14} />
-                  </a>
+                  {project.link && project.link !== "#" ? (
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="signal-underline group font-mono text-xs uppercase font-bold"
+                    >
+                      LAUNCH SYSTEM <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+                    </a>
+                  ) : (
+                    <span className="font-mono text-xs uppercase font-bold text-[var(--ink-soft)] opacity-70">
+                      [ ENCRYPTED SPEC ]
+                    </span>
+                  )}
 
                   {project.caseStudy && (
                     <button 
                       onClick={() => setActiveProject(project)}
-                      className="font-mono text-xs font-semibold text-[var(--ink-soft)] hover:text-[var(--ink)] uppercase transition-colors"
+                      className="signal-underline font-mono text-xs uppercase font-bold text-[var(--ink-soft)] hover:text-[var(--ink)]"
                     >
                       [ VIEW SPEC ]
                     </button>
@@ -109,7 +115,7 @@ const Projects = () => {
                   href={project.github} 
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 border border-[var(--line)] rounded-md text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors"
+                  className="p-2.5 border border-[var(--line)] rounded-[8px] text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors"
                   title="Source Repository on GitHub"
                 >
                   <Github size={16} />
@@ -181,20 +187,24 @@ const Projects = () => {
               </div>
 
               <div className="pt-6 border-t border-[var(--line)] flex justify-end gap-4">
-                <button 
+                <motion.button 
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   onClick={() => setActiveProject(null)}
-                  className="px-6 py-2.5 border border-[var(--line)] text-xs font-mono font-bold uppercase rounded-md text-[var(--ink-soft)] hover:border-[var(--ink)]"
+                  className="px-6 py-2.5 border border-[var(--line)] text-xs font-mono font-bold uppercase rounded-[12px] text-[var(--ink-soft)] hover:border-[var(--ink)] hover:text-[var(--ink)] transition-colors"
                 >
                   CLOSE SPEC
-                </button>
-                <a 
+                </motion.button>
+                <motion.a 
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   href={activeProject.link} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="px-6 py-2.5 bg-[var(--ink)] text-[var(--paper-raised)] text-xs font-mono font-bold uppercase rounded-md hover:bg-[var(--signal)] transition-colors flex items-center gap-2"
+                  className="group px-6 py-2.5 bg-[var(--ink)] text-[var(--paper-raised)] text-xs font-mono font-bold uppercase rounded-[12px] hover:bg-[var(--signal)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all flex items-center gap-2"
                 >
-                  LIVE DEMO <ArrowUpRight size={14} />
-                </a>
+                  LIVE DEMO <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+                </motion.a>
               </div>
             </motion.div>
           </div>
