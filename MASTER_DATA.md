@@ -101,7 +101,7 @@
 - **Category:** LUXURY JEWELLERY STORE
 - **Description:** Premium jewellery storefront featuring multi-currency support (USD, GBP, AUD, CAD) and high-end product visualization.
 - **Tech Stack:** `MERN Stack`, `Redux Toolkit`, `JWT`
-- **Live System Link:** `https://jewellery-store-six-zeta.vercel.app/`
+- **Live System Link:** `https://www.caratior.com/`
 - **GitHub Repository:** `https://github.com/yash-pokiya`
 - **Image URL:** `https://res.cloudinary.com/dsncsvgfm/image/upload/v1777294180/Screenshot_2026-04-27_181920_cjwkae.png`
 - **Case Study:**
@@ -114,7 +114,7 @@
 - **Category:** ZERO-KNOWLEDGE PHOTO STORAGE
 - **Description:** A privacy-first encrypted photo vault where images are encrypted client-side before upload — the server only ever stores ciphertext, never plaintext photos or passwords.
 - **Tech Stack:** `React`, `Node.js`, `Express`, `MongoDB`, `Cloudinary`
-- **Live System Link:** `#`
+- **Live System Link:** `https://cyphervault.vercel.app/`
 - **GitHub Repository:** `https://github.com/yash-pokiya`
 - **Image URL:** `https://res.cloudinary.com/dsncsvgfm/image/upload/v1784731266/Screenshot_2026-07-22_200949_pqzibn.png`
 - **Case Study:**
